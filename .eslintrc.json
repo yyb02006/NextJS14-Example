@@ -1,3 +1,13 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser", // @typescript-eslint/parser 내부적으로 설정되어 있겠지만, 버전을 업데이트 했으니 명시적으로 작성
+  "extends": [
+    "next/core-web-vitals", // nextjs 내장 eslint config (eslint-config-next)
+    "plugin:@typescript-eslint/recommended", // @typescript-eslint/eslint-plugin
+    "plugin:prettier/recommended" // eslint-config-prettier, eslint-plugin-prettier
+  ],
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }], // plugin:prettier/recommended(eslint-plugin-prettier)
+    "@typescript-eslint/explicit-function-return-type": "off", // 함수의 반환 타입 명시 요구 off
+    "@typescript-eslint/no-unused-vars": "off" // 사용되지 않는 변수를 허용하지 않음 off
+  }
 }
