@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata } from 'next'
 
 /**
  *
@@ -17,7 +17,7 @@ import { Metadata } from 'next';
  * ref : https://nextjs.org/docs/app/building-your-application/optimizing/metadata
  *
  * */
-export const metadata: Metadata = { title: 'Dashboard' };
+export const metadata: Metadata = { title: 'Dashboard' }
 
 /**
  *
@@ -35,5 +35,5 @@ export const metadata: Metadata = { title: 'Dashboard' };
  *
  * */
 export default function DashboardPage() {
-  return <div>Hello, Dashboard Page!</div>;
+  return <div>Hello, Dashboard Page!</div>
 }

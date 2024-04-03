@@ -8,5 +8,5 @@
  *
  * */
 export default function GoodsPage() {
-  return <h1>Hello, Goods Page!</h1>;
+  return <h1>Hello, Goods Page!</h1>
 }
