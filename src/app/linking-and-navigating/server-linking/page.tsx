@@ -37,7 +37,7 @@ const timeout = (id: string) =>
 export default async function serverLinking() {
   const response = await timeout('admin')
   if (response.success) {
-    redirect('/linking')
+    redirect('/linking-and-navigating')
   }
   return (
     <ul>
