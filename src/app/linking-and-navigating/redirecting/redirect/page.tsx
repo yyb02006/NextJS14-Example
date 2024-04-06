@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation'
 
 const timeout = (id: string) =>
-  new Promise<{ success: boolean; message: string }>((resolve) => {
+  new Promise<{ success: boolean; role: string }>((resolve) => {
     setTimeout(() => {
-      resolve({ success: true, message: `Your ID is ${id}` })
+      resolve({ success: false, role: id })
     }, 3000)
   })
 
@@ -21,7 +21,9 @@ const timeout = (id: string) =>
  *    이러한 이유는 HTTP클라이언트들이 302응답을 받았을 때 리다이렉트 요청을 *GET으로 보내는 경향이 있기 때문에 원래의 요청을 유지하기 위함이다.
  *    HTTP/1.1 표준에서는 이를 명확히 나누는 **303(See Other)과 ***307(Temporary Redirect) 상태코드가 도입되었다.
  *
- * 4. 클라이언트 컴포넌트에서도 호출할 수 있지만 이벤트 핸들러에서는 호출할 수 없다.
+ * 4. never타입이기 때문에 JSX를 return할 필요 없이 redirect만 단독으로 사용할 수 있다.
+ *
+ * 5. 클라이언트 컴포넌트에서도 호출할 수 있지만 이벤트 핸들러에서는 호출할 수 없다.
  *
  *
  * *HTTP/1.0 표준에선 리다이렉트를 요청을 어떤 메서드로 할 지 명시적으로 규정하지 않았다.
@@ -34,12 +36,11 @@ const timeout = (id: string) =>
  * ref : https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#redirect-function
  *
  * */
-export default async function serverLinking() {
+export default async function ServerRedirecting() {
   const response = await timeout('admin')
-  if (response.success) {
+  !response.success ? (
     redirect('/linking-and-navigating')
-  }
-  return (
+  ) : (
     <ul>
       <li>Hello ServerLinking Page!</li>
     </ul>
