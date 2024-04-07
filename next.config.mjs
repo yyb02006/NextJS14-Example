@@ -7,7 +7,13 @@ const nextConfig = {
    * ref : https://nextjs.org/docs/app/api-reference/next-config-js/redirects
    * */
   async redirects() {
-    return [{ source: '/linking-and-navigating/redirecting', destination: '/', permanent: false }]
+    return [
+      { source: '/linking-and-navigating/redirecting', destination: '/', permanent: true },
+      /* 
+      아래와 같이 와일드카드도 경로로 입력 가능
+      { source: '/linking-and-navigating:slug', destination: '/', permanent: false },
+      */
+    ]
   },
 }
 
