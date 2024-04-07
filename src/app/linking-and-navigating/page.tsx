@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 /**
  *
@@ -68,27 +67,9 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
  *
  * */
 export default function LinkingPage() {
-  const pathname = usePathname()
-  const query = useSearchParams()
-  const router = useRouter()
-  console.log(query.get('a'))
   return (
     <ul>
       <li>Hello Linking Page!</li>
-      <li>
-        Pathname: <span className="text-cyan-400">{pathname}</span>
-      </li>
-      <li>
-        <button
-          type="button"
-          onClick={() => {
-            router.push('/', { scroll: false })
-          }}
-          className="bg-green-600"
-        >
-          &nbsp; Navigate to The Home with UseRouter &nbsp;
-        </button>
-      </li>
       <li>
         Click this Link! {'=> '}
         {/**
