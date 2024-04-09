@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 
 type LinkButtonColor =
   | 'bg-green-600'
@@ -77,7 +77,7 @@ const LinkButton = ({
  * ref(History API) : https://developer.mozilla.org/ko/docs/Web/API/History_API
  *
  */
-export default function UseRouterPage() {
+const UseRouterPage = () => {
   const router = useRouter()
   const pathname = usePathname()
   const SearchParams = useSearchParams()
@@ -153,5 +153,13 @@ export default function UseRouterPage() {
         />
       </li>
     </ul>
+  )
+}
+
+export default function UseRouterSuspense() {
+  return (
+    <Suspense fallback={<p>loading...</p>}>
+      <UseRouterPage />
+    </Suspense>
   )
 }
