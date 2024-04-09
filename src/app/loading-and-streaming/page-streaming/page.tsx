@@ -46,7 +46,7 @@ const fetchIndigoDiv = () => {
  * ref : https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#instant-loading-states
  *
  * */
-export async function ChildComponent() {
+async function ChildComponent() {
   // 3초, 5초 중 더 긴 5초만큼 지연됨
   const [{ dom: amberDiv }, { dom: indigoDiv }] = [await fetchAmberDiv(), await fetchIndigoDiv()]
   return (
