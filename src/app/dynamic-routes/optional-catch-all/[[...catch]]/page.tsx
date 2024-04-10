@@ -3,7 +3,7 @@ export default function OptionalCatchAllPage({ params }: { params: { catch?: str
     <div>
       Hello OptionalCatchAllPage!
       <div>
-        Current World Optional Catch-all Segments ={' '}
+        Current Optional Catch-all Segments ={' '}
         {params.catch ? "Doesn't exist any segments" : params.catch}
       </div>
     </div>
