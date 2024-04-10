@@ -62,15 +62,25 @@ const LinkButton = ({
  *
  * 4. 기존 useRouter에서 분리된 usePatchname과 useSearchParams에 대한 설명은 아래와 같다.
  *
- *    -usePatchname : 딱 pathname만 가지고 오는 훅. pathname만 필요할 때 이제 useRouter를 쓸 필요가 없다.
- *
- *                    ref : https://nextjs.org/docs/app/api-reference/functions/use-pathname
- *
  *    -useSearchParams : web api의 URLSearchParams객체를 읽기전용으로 반환한다.
  *                       get메서드로 특정 쿼리에 대한 값을 받을 수 있고, has메서드로 특정 쿼리가 존재하는지 판단할 수 있다.
  *
+ *                       빌드 타임에는 쿼리에 대한 정보를 제공할 수 없기 때문에
+ *                       useSearchParams를 사용하는 클라이언트 컴포넌트 트리는 Static Rendering에서 제외된다.
+ *                       제외된 클라이언트 컴포넌트 트리는 정적파일의 도움 없이 오로지 CSR으로만 렌더링된다.
+ *
+ *                       NextJS에서는 useSearchParams를 사용하는 클라이언트 컴포넌트 트리가 상위에 Suspense경계를 가지고 있지 않으면
+ *                       빌드타임에 에러를 뱉어내는데, 웬만하면 Suspesnse를 사용하도록 하자.
+ *
  *                       ref(Hook) : https://nextjs.org/docs/app/api-reference/functions/use-search-params
  *                       ref(URLSearchParams API) : https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
+ *
+ *    -usePatchname : 딱 pathname만 가지고 오는 훅. pathname만 필요할 때 이제 useRouter를 쓸 필요가 없다.
+ *
+ *                    반면 빌드 타임에도 경로는 존재하기 때문에
+ *                    usePathname를 사용하는 클라이언트 컴포넌트 트리는 Static Rendering에 포함된다.
+ *
+ *                    ref : https://nextjs.org/docs/app/api-reference/functions/use-pathname
  *
  *
  * ref : https://nextjs.org/docs/app/api-reference/functions/use-router
