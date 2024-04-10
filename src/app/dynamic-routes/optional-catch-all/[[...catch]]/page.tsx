@@ -9,6 +9,8 @@
  *
  * 2. 이 자식의 params는 {shop : ['clothes', 'tops', 't-shirts']}와 같은 식으로 전달되는데, 후속 세그먼트가 없을 경우 빈 객체도 반환할 수 있다.
  *
+ * 3. 기본적인 다이나믹 라우트와 Catch-all, Optional Catch-all의 세그먼트가 충돌할 경우 기본적인 다이나믹 라우트를 우선 렌더링하는 것 같다(?)
+ *
  *
  * ref : https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes#optional-catch-all-segments
  *
