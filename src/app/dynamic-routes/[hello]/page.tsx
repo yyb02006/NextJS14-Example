@@ -68,8 +68,9 @@ export async function generateStaticParams() {
  *
  * 4. 다이나믹 라우트의 각 세그먼트는 params 라는 프로퍼티가 전달되며 { folderName : '실제 세그먼트' }식으로 전달된다.
  *    layout, page, route파일에 전달될 수 있으며, generateMetadata함수에도 전달된다
- *
  * 5. cath-all, optional-catch-all과 같은 바리에이션이 있다. generateStaticParams라는 정적 생성을 지원하는 함수도 있다.
+ *
+ * 6. generateStaticParams로 미리 생성되지 않는 다이나믹 라우트에 대해선 SSR방식으로 렌더링된다.
  *
  *
  * ref : https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes
