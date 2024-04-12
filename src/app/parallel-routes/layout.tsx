@@ -36,8 +36,8 @@ export default function StreamingCommmonLayout({
     { label: 'to Parent', path: '/parallel-routes' },
   ]
   return (
-    <section>
-      <nav className="border-b px-10">
+    <section className="h-screen">
+      <nav className="fixed w-full border-b bg-black px-10">
         <article className="flex h-16 items-center justify-around border-x">
           <div className="flex h-full w-full flex-shrink-[2] items-center justify-center hover:bg-sky-600">
             Global Nav in Parallel Routes Layout
@@ -50,9 +50,17 @@ export default function StreamingCommmonLayout({
           </ul>
         </article>
       </nav>
-      {children}
-      {hello}
-      {world}
+      <section className="flex h-full w-full items-center justify-center pt-16">
+        <div className="gire grid h-[600px] w-[1200px] grid-cols-2 gap-4 text-2xl font-bold ">
+          <div className="flex h-full w-full items-center justify-center bg-pink-500">
+            {children}
+          </div>
+          <div className="flex w-full flex-col gap-4">
+            <div className="flex h-full items-center justify-center bg-indigo-500">{hello}</div>
+            <div className="flex h-full items-center justify-center bg-sky-600">{world}</div>
+          </div>
+        </div>
+      </section>
     </section>
   )
 }
