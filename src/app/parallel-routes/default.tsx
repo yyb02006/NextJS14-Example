@@ -1,3 +1,3 @@
 export default function DefaultParallelRoutesPage() {
-  return <div>Hello DefaultParallelRoutesPage!</div>
+  return <div>/default.tsx</div>
 }

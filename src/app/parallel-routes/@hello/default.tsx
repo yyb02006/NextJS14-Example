@@ -1,3 +1,3 @@
 export default function DefaultParallelHelloPage() {
-  return <div>Hello DefaultParallelHelloPage!</div>
+  return <div>/@hello/default.tsx</div>
 }

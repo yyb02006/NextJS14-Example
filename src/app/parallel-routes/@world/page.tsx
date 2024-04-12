@@ -24,9 +24,15 @@ export default function ParallelWorldPage() {
     fetchData()
   }, [])
   return (
-    <div>
-      Hello ParallelWorldPage!
-      {data}
+    <div className="text-center">
+      {data ? (
+        <>
+          /@world/page.tsx
+          <div className="text-sm font-normal">{data}</div>
+        </>
+      ) : (
+        <div>wating for fetching...</div>
+      )}
     </div>
   )
 }

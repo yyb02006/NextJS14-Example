@@ -24,9 +24,15 @@ export default function ParallelHelloPage() {
     fetchData()
   }, [])
   return (
-    <div>
-      Hello ParallelHelloPage!
-      {data}
+    <div className="text-center">
+      {data ? (
+        <>
+          /@hello/page.tsx
+          <div className="text-sm font-normal">{data}</div>
+        </>
+      ) : (
+        <div>wating for fetching...</div>
+      )}
     </div>
   )
 }

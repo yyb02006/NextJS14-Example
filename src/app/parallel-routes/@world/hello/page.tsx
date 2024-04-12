@@ -1,3 +1,3 @@
 export default function ParallelWorldPage() {
-  return <div>Hello ParallelWorldHelloPage!</div>
+  return <div>/@world/hello/page.tsx</div>
 }

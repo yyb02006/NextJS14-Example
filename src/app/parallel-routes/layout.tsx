@@ -26,10 +26,10 @@ export default function StreamingCommmonLayout({
   hello: ReactNode
   world: ReactNode
 }) {
-  const selected = useSelectedLayoutSegment('hello')
+  const helloSlot = useSelectedLayoutSegment('hello')
+  const worldSlot = useSelectedLayoutSegment('world')
   const selecteds = useSelectedLayoutSegments('hello')
-  console.log(selected, selecteds)
-
+  console.log(helloSlot, worldSlot, selecteds)
   const navButtons = [
     { label: 'to Hello', path: '/parallel-routes/hello' },
     { label: 'to World', path: '/parallel-routes/world' },
@@ -56,8 +56,22 @@ export default function StreamingCommmonLayout({
             {children}
           </div>
           <div className="flex w-full flex-col gap-4">
-            <div className="flex h-full items-center justify-center bg-indigo-500">{hello}</div>
-            <div className="flex h-full items-center justify-center bg-sky-600">{world}</div>
+            <div
+              className={
+                'flex h-full items-center justify-center ' +
+                `${helloSlot === '__DEFAULT__' ? 'bg-indigo-800' : 'bg-indigo-500'}`
+              }
+            >
+              {hello}
+            </div>
+            <div
+              className={
+                'flex h-full items-center justify-center ' +
+                `${worldSlot === '__DEFAULT__' ? 'bg-sky-800' : 'bg-sky-600'}`
+              }
+            >
+              {world}
+            </div>
           </div>
         </div>
       </section>
