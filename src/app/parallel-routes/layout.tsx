@@ -26,8 +26,7 @@ export default function StreamingCommmonLayout({
   hello: ReactNode
   world: ReactNode
 }) {
-  console.log(world)
-  console.log(hello)
+  // 왜인지는 몰라도 첫 번째 슬롯에 대해서만 /경로에서 page$대신 null을 혹은, 반대의 경우에서 null대신 "page$"를 반환하는 현상이 있음. 이후 세그먼트에 대한 작동은 정상.
   const helloSlot = useSelectedLayoutSegment('hello')
   const worldSlot = useSelectedLayoutSegment('world')
   const rootChildren = useSelectedLayoutSegment()
