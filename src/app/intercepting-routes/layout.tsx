@@ -1,4 +1,18 @@
+import Link from 'next/link'
 import { ReactNode } from 'react'
+
+const NavButton = ({ label, path }: { label: string; path: string }) => {
+  return (
+    <li className=" h-full w-full border-l">
+      <Link
+        className="flex h-full w-full items-center justify-center hover:bg-amber-500"
+        href={path}
+      >
+        {label}
+      </Link>
+    </li>
+  )
+}
 
 /**
  *
@@ -27,10 +41,27 @@ import { ReactNode } from 'react'
  * ref : https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes
  *
  * */
-export default function InterceptingRoutesLayout({ children }: { children: ReactNode }) {
+export default function StreamingCommmonLayout({ children }: { children: ReactNode }) {
+  const navButtons = [
+    { label: 'to Feed', path: '/intercepting-routes/feed' },
+    { label: 'to Photo', path: '/intercepting-routes/photo' },
+  ]
   return (
     <section>
-      Hello InterceptingRoutesLayout!<div>{children}</div>
+      <nav className="border-b px-10">
+        <article className="flex h-16 items-center justify-around border-x">
+          <div className="flex h-full w-full flex-shrink-[2] items-center justify-center hover:bg-sky-600">
+            Global Nav in intercepting-routes Layout
+          </div>
+          <ul className="flex h-full w-full max-w-[70%] items-center justify-between">
+            {navButtons.map((navButton) => {
+              const { label, path } = navButton
+              return <NavButton label={label} path={path} key={path}></NavButton>
+            })}
+          </ul>
+        </article>
+      </nav>
+      {children}
     </section>
   )
 }
