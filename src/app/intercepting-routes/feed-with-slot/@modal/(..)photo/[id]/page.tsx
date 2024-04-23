@@ -13,6 +13,7 @@ export default function PhotoModal({ params }: { params: { id: string } }) {
         </div>
         <button
           onClick={() => {
+            // useRouter의 back 메서드로 모달 닫기 기능 구현 가능
             router.back()
           }}
           className="absolute right-2 top-2 flex h-8 w-8 items-center"
