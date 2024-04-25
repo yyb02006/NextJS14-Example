@@ -9,7 +9,7 @@ const fetchDogData = () => {
   })
 }
 
-export default async function GET() {
+export async function GET() {
   const { data, success } = await fetchDogData()
   return Response.json({ data })
 }
