@@ -1,3 +1,6 @@
+import { cookies, headers } from 'next/headers'
+import { NextRequest } from 'next/server'
+
 export const revalidate = 60
 
 const fetchDogData = () => {
@@ -11,7 +14,7 @@ const fetchDogData = () => {
   })
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   /* 
   fetch 함수에 아래처럼 next revalidation 옵션 추가 가능
 
@@ -22,5 +25,10 @@ export async function GET() {
     )
   ).json() */
   const { data, success } = await fetchDogData()
+  const cookieStore = cookies()
+  const user = cookieStore.get('user')
+  const headerList = headers()
+  const referer = headerList.get('referer')
+  const headersFromRequest = new Headers(request.headers)
   return Response.json({ data })
 }
