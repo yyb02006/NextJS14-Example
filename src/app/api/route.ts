@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { NextRequest } from 'next/server'
+import { type NextRequest } from 'next/server'
 
 export const revalidate = 60
 
@@ -32,6 +32,7 @@ export async function GET(request: NextRequest) {
   const headerList = headers()
   const referer = headerList.get('referer')
   const headersFromRequest = new Headers(request.headers)
+  const query = request.nextUrl.searchParams.get(`query`)
   return Response.json({ data })
 }
 
