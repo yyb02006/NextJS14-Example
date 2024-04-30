@@ -38,7 +38,11 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const body: { success: boolean } = await request.json()
+  const formData = await request.formData()
   const { data, success } = await fetchDogData(body.success)
+  const name = formData.get('name')
+  const email = formData.get('email')
+  console.log('name = ' + name, 'email = ' + email)
   if (!success || !body.success) redirect('/')
   return Response.json({ data })
 }
