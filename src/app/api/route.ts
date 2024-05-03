@@ -3,6 +3,11 @@ import { redirect } from 'next/navigation'
 import { type NextRequest } from 'next/server'
 
 export const revalidate = 60
+/* export const dynamic = 'auto'
+export const dynamicParams = truncate
+export const fetchCache = 'auto'
+export const runtime = 'nodejs'
+export const preferredRegion = 'auto' */
 
 const fetchDogData = (success: boolean = true) => {
   return new Promise<{ success: boolean; data: string }>((resolve) => {
