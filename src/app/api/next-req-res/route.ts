@@ -1,6 +1,21 @@
 import { NextRequest } from 'next/server'
 
-export default function GET(request: NextRequest) {
+const getNextURLProps = (request: NextRequest) => {
+  const { basePath, buildId, pathname, searchParams } = request.nextUrl
+  console.log(
+    'basePath = ',
+    basePath,
+    'buildId = ',
+    buildId,
+    'pathname = ',
+    pathname,
+    'searchParams = ',
+    searchParams,
+  )
+  return { basePath, buildId, pathname, searchParams }
+}
+
+const getCookies = (request: NextRequest) => {
   const cookiePayloads = [
     { key: 'payload', value: 'cat' },
     { key: 'payload', value: 'dog' },
@@ -11,15 +26,39 @@ export default function GET(request: NextRequest) {
     request.cookies.set(key, value)
   })
   const requestCookies = request.cookies.set('dessert', 'candy')
-  console.log(requestCookies)
+  console.log('requestCookiesObject = ', requestCookies)
   request.cookies.get('payload')
-  const [payloadCookies, AllCookies] = [request.cookies.getAll('payload'), request.cookies.getAll()]
-  console.log(payloadCookies, AllCookies)
+  const [payloadCookies, allCookies] = [request.cookies.getAll('payload'), request.cookies.getAll()]
+  console.log('payloadCookies = ', payloadCookies, allCookies)
+  console.log('allCookies = ', allCookies)
   request.cookies.delete('payload')
-  console.log(request.cookies.getAll())
-  console.log(['payload', 'dessert'].map((el) => request.cookies.has(el)))
+  console.log('allCookies after deleted = ', request.cookies.getAll())
+  console.log(
+    'has cookies after deleted = ',
+    ['payload', 'dessert'].map((el) => request.cookies.has(el)),
+  )
   request.cookies.clear()
-  console.log(request.cookies.getAll())
+  console.log('allcookies after deleted ', request.cookies.getAll())
+}
 
-  return Response.json({ success: true, message: 'GET Request Succeed' })
+export default function GET(request: NextRequest) {
+  const target = request.nextUrl.searchParams.get('target') as
+    | 'cookies'
+    | 'nextURL'
+    | 'ip'
+    | 'geo'
+    | null
+  let data = null
+  switch (target) {
+    case 'cookies':
+      data = getCookies(request)
+      break
+    case 'nextURL':
+      getNextURLProps(request)
+      break
+    default:
+      console.log('no matched target or empty target')
+      break
+  }
+  return Response.json({ success: true, message: 'GET Request Succeed', data })
 }
