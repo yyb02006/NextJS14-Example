@@ -1,5 +1,11 @@
 import { NextRequest } from 'next/server'
 
+const getIp = (request: NextRequest) => {
+  const useVercel = request.ip
+  const useOtherFlatform = request.headers.get('X-Forwarded-For')
+  return useVercel ? useVercel : useOtherFlatform
+}
+
 const getNextURLProps = (request: NextRequest) => {
   const { basePath, buildId, pathname, searchParams } = request.nextUrl
   console.log(
@@ -56,6 +62,8 @@ export default function GET(request: NextRequest) {
     case 'nextURL':
       getNextURLProps(request)
       break
+    case 'ip':
+      data = getIp(request)
     default:
       console.log('no matched target or empty target')
       break
