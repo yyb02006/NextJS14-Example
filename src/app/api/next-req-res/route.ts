@@ -47,6 +47,13 @@ const getCookies = (request: NextRequest) => {
   console.log('allcookies after deleted ', request.cookies.getAll())
 }
 
+const getGeo = (request: NextRequest) => {
+  if (!request.geo) return
+  const { city, country, latitude, longitude, region } = request.geo
+  console.log(city, country, latitude, longitude, region)
+  return request.geo
+}
+
 export default function GET(request: NextRequest) {
   const target = request.nextUrl.searchParams.get('target') as
     | 'cookies'
@@ -64,6 +71,8 @@ export default function GET(request: NextRequest) {
       break
     case 'ip':
       data = getIp(request)
+    case 'geo':
+      data = getGeo(request)
     default:
       console.log('no matched target or empty target')
       break
