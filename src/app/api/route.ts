@@ -54,13 +54,47 @@ export async function GET(request: NextRequest) {
   ).json()
   */
   const { data, success } = await fetchDogData()
+  /**
+   * Routing => [Route Handlers]#Cookies
+   *
+   * 1. Cookies DynamicFunction으로부터 cookieStore를 생성하거나 NextRequest 오브젝트를 사용하여 Set-Cookie header에 접근 가능
+   *
+   * 2. 위 두 가지 방법 모두에 동일한 기능의 메서드가 포함되어 있으며 자세한 메서드들에 대해서는 next-req-res API 라우트에서 설명
+   *
+   * ref : https://nextjs.org/docs/app/building-your-application/routing/route-handlers#cookies
+   * */
   const cookieStore = cookies()
+  /**
+   * - set(name, value, options?) : name과 value 파라미터에 값을 전달하여 쿠키를 할당할 수 있음
+   *
+   * - options? parameter : 옵션으로 전달할 수 있는 cookie? 파라미터는 Domain, HttpOnly, Max-Age와 같이
+   *                        쿠키에 적용할 현재 사양의 Set-Cookie 헤더의 Attributes를 전달할 수 있음
+   *
+   * ref(Attributes) : https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#attributes
+   * */
+  cookieStore.set('user', 'john', { maxAge: 60, httpOnly: true, secure: true })
+  /**
+   * - get(name) : name과 일치하는 쿠키의 값을 불러옴
+   */
   const user = cookieStore.get('user')
+  console.log(`get user cookie = ${user}`)
+  /**
+   * Routing => [Route Handlers]#Headers
+   *
+   * 1. Headers DynamicFunction으로부터 headerList를 생성하거나 NextRequest 오브젝트의 headers프로퍼티를 사용하여 header에 접근 가능
+   *
+   * 2. 위 두 가지 방법 모두에 동일한 기능의 메서드가 포함되어 있으며 NextRequest를 이용하는 방법에 대해서는 next-req-res API 라우트에서 설명
+   *
+   * 3. header 인스턴스는 기본적으로 읽기전용이며 header를 설정하기 위해서는 응답에서 Responese 인스턴스를 생성하여 headers 프로퍼티를 통해 설정해야함
+   *
+   * ref : https://nextjs.org/docs/app/building-your-application/routing/route-handlers#headers
+   * */
   const headerList = headers()
-  const referer = headerList.get('referer')
-  const headersFromRequest = new Headers(request.headers)
-  const query = request.nextUrl.searchParams.get(`query`)
-  return Response.json({ data })
+  const referer = headerList.get('referer') || ''
+  return new Response(JSON.stringify(data), {
+    status: 200,
+    headers: { referer },
+  })
 }
 
 export async function POST(request: NextRequest) {
