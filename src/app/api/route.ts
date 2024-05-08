@@ -2,12 +2,87 @@ import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { type NextRequest } from 'next/server'
 
-export const revalidate = 60
-/* export const dynamic = 'auto'
-export const dynamicParams = truncate
+/**
+ *
+ * Routing => [Route Handlers]#Route Segment Config
+ *
+ *
+ * 1. 지정된 이름의 세그먼트 옵션 변수를 내보내는 방법으로 Config를 조정할 수 있으며, 아래의 옵션들이 존재한다.
+ *
+ *
+ * ref : https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
+ *
+ * */
+
+/**
+ * 캐시된 데이터의 재검증 시간. fetch api를 사용할 때 같은 요청에 대해 캐시된 데이터를 revaildate 시간만큼 사용한다.
+ * revaildate 옵션을 사용하더라도 여전히 개별 fetch 요청의 cache 옵션을 우선해서 사용할 수 있다.
+ *
+ * - false(default) : dynamic function이 사용되기 전에 실행된 모든 fetch 요청에 대해 무기한으로 캐시한다.
+ *
+ * - 0 : 캐시하지 않는다. fetch 요청에 cache 옵션이 설정되어 있지 않다면 'no-store'가 적용된다.
+ *
+ * - number : 재검증될 주기를 초단위로 설정한다.
+ * */
+export const revalidate = false
+
+/**
+ * 해당 세그먼트를 동적으로 사용할 것인지, 정적으로 사용할 것인지에 대한 옵션.
+ *
+ * - 'auto'(default) : 세그먼트를 최대한 정적으로 사용하지만, dynamic function이 사용될 때와 같이 세그먼트를 동적으로 사용해야 하는 상황에서는 동적으로 작동한다.
+ *
+ * - 'force-dynamic' : 세그먼트를 동적으로 사용한다. 라우트 핸들러에서는 데이터의 캐싱을 하지 않는 것과 같다.
+ *
+ * - 'force-static' : 세그먼트를 정적으로 사용한다. dynamic function은 empty value를 반환한다.
+ *
+ * - 'error' : 세그먼트를 정적으로 사용하며 동적 세그먼트가 필요한 dynamic function과 같은 요소가 사용될 때는 error를 발생시킨다.
+ * */
+export const dynamic = 'auto'
+
+/**
+ * generateStaticParams로 미리 생성되지 않은 dynamic segment에 접근했을 때, 어떻게 할 것인지에 대한 옵션.
+ *
+ * - true(default) : 미리 생성되지 않은 dynamic segment에 접근할 때 해당 세그먼트를 생성한다.
+ *
+ * - false : 미리 생성되지 않은 dynamic segment에 접근할 때 404 페이지를 반환한다.
+ * */
+export const dynamicParams = true
+
+/**
+ * nextjs는 fetch 요청의 cache 옵션에 대해 기본적으로 dynamic function 이전의 fetch요청은 캐시하고 dynamic function 이후의 fetch 요청은 캐시하지 않는다.
+ *
+ * - 'auto'(default) : 위와 같은 기본 동작으로 캐시하도록 설정한다.
+ *
+ * - 'default-cache' : fetch 요청에 cache 옵션을 전달하는 것을 허용하고, 전달하지 않은 경우에는 'force-cache'옵션을 적용한다.
+ *                     이 경우 dynamic function 이후의 fetch 요청에 대해서도 캐시된다.
+ *
+ * - 'only-cache' : fetch 요청에 cache 옵션이 없다면 기본값으로 'force-cache'를 사용하도록 하며, 'no-store'를 사용하는 요청에 대해 에러를 발생시킨다.
+ *
+ * - 'force-cache' : 모든 fetch 요청이 'force-cache' 옵션을 사용하도록 강제한다.
+ *
+ * - 'default-no-store' : fetch 요청에 cache 옵션을 전달하는 것을 허용하고, 전달하지 않은 경우에는 'no-store'옵션을 적용한다.
+ *                        이 경우 dynamic function 이전의 fetch 요청에 대해서도 캐시되지 않는다.
+ *
+ * - 'only-no-store' : fetch 요청에 cache 옵션이 없다면 기본값으로 'no-store'를 사용하도록 하며, 'force-cache'를 사용하는 요청에 대해 에러를 발생시킨다.
+ *
+ * - 'force-no-store' : 모든 fetch 요청이 'no-store' 옵션을 사용하도록 강제한다.
+ * */
 export const fetchCache = 'auto'
+
+/**
+ * runtime 옵션으로 서버사이드의 어떤 런타임 환경에서 작동될 것인지에 대해 설정할 수 있다.
+ *
+ * - 'nodejs'(default) : NextJs14의 서버사이드는 기본적으로 nodejs 환경을 사용한다.
+ *
+ * - 'edge' : 미들웨어같은 파일에서 사용할 수 있는 빠른 속도의 런타임이다.
+ */
 export const runtime = 'nodejs'
-export const preferredRegion = 'auto' */
+
+/**
+ * 선호하는 지역을 설정할 수 있다. 지역을 설정하면 사용자에게 가장 가까운 서버가 작동하는데, 이 개념은 Vercel에서 사용되는 것 같다.
+ * 'auto'(default), 'global', 'home', ['ladi', 'sf01']와 같은 값을 사용할 수 있다고 한다.
+ */
+export const preferredRegion = 'auto'
 
 const fetchDogData = (success: boolean = true) => {
   return new Promise<{ success: boolean; data: string }>((resolve) => {
