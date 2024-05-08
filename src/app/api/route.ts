@@ -98,12 +98,28 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  /**
+   * Routing => [Route Handlers]#Request Body
+   *
+   * 1. request body를 읽는 방법은 이전처럼 request.json() web api 메서드를 통해 파싱하면 된다.
+   * */
   const body: { success: boolean } = await request.json()
+  /**
+   * Routing => [Route Handlers]#Request Body FormData
+   *
+   * 1. formData를 수신한 경우 request.fromData() 메서드를 통해 읽을 수 있으며, 여기서 formData는 전부 문자열로 표현되기 때문에
+   *    데이터를 포맷팅하기 위한 별도의 처리가 필요하다.
+   * */
   const formData = await request.formData()
-  const { data, success } = await fetchDogData(body.success)
   const name = formData.get('name')
   const email = formData.get('email')
   console.log('name = ' + name, 'email = ' + email)
+  /**
+   * Routing => [Route Handlers]#Redirects
+   *
+   * 1. 서버 컴포넌트에서 사용하는 redirects 함수를 라우트 핸들러에서도 사용할 수 있다.
+   * */
+  const { data, success } = await fetchDogData(body.success)
   if (!success || !body.success) redirect('/')
   return Response.json({ data })
 }
