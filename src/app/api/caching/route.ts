@@ -1,18 +1,24 @@
-const fetchDogData = (id: string | null) => {
-  return new Promise<{ success: boolean; data: string }>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        data: `id = ${id}`,
-      })
-    }, 3000)
-  })
-}
-
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const id = searchParams.get('id')
-  const response = await fetchDogData(id)
-  const { data, success } = response
-  return Response.json({ data })
+/**
+ *
+ * Routing => [Route Handler]#Caching
+ *
+ *
+ * 1. GET 메서드를 Response 오브젝트와 함께 사용할 때 라우트 핸들러가 캐시되고, 다음 요청 시 캐시된 데이터를 응답한다.
+ *
+ * 2. 핸들러의 캐시가 무효화되는 조건은 아래와 같다.
+ *
+ *    1. Request 오브젝트를 사용하는 경우
+ *
+ *    2. GET이 아닌 HTTP 메서드를 사용하는 경우
+ *
+ *    3. Dynamic Function을 사용하는 경우
+ *
+ *    4. Segment Config Options에 'force-dynamic'과 같은 옵션을 사용해서 라우트를 동적으로 변경한 경우
+ *
+ *
+ * ref : https://nextjs.org/docs/app/building-your-application/routing/route-handlers#caching
+ *
+ * */
+export async function GET() {
+  return Response.json({ time: new Date().getTime() })
 }
