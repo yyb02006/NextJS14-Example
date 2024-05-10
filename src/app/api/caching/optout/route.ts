@@ -4,8 +4,9 @@ import { NextRequest } from 'next/server'
 // dynamic 변수에 force-dynamic 값을 할당하여 라우트 핸들러를 동적으로 만들어서 캐싱 옵트아웃
 export const dynamic = 'force-dynamic'
 
-// request 오브젝트를 사용하여 라우트 핸들러 캐싱 옵트아웃
 export function GET(request: NextRequest) {
+  // request 오브젝트를 사용하여 라우트 핸들러 캐싱 옵트아웃
+  const req = request
   // headers, cookies와 같은 dynamic function을 사용하여 라우트 핸들러 캐싱 옵트아웃
   const cookieStore = cookies()
   const headerList = headers()
