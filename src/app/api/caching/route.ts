@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 /**
  *
  * Routing => [Route Handler]#Caching
@@ -5,7 +6,7 @@
  *
  * 1. GET 메서드를 Response 오브젝트와 함께 사용할 때 라우트 핸들러가 캐시되고, 다음 요청 시 캐시된 데이터를 응답한다.
  *
- * 2. 핸들러의 캐시가 무효화되는 조건은 아래와 같다.
+ * 2. 핸들러의 캐시가 옵트아웃되는 조건은 아래와 같다.
  *
  *    1. Request 오브젝트를 사용하는 경우
  *
@@ -20,5 +21,6 @@
  *
  * */
 export async function GET() {
+  console.log('run caching API route')
   return Response.json({ time: new Date().getTime() })
 }
