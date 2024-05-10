@@ -6,7 +6,7 @@ export default function ClientComponentFetch() {
   const [data, setData] = useState<string>('')
   useEffect(() => {
     const fetchTime = async () => {
-      const data = await (await fetch('http://localhost:3000/api/caching')).json()
+      const data = await (await fetch('http://localhost:3000/api/caching/optout')).json()
       setData(data.time)
     }
     fetchTime()
