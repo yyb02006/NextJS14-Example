@@ -54,7 +54,7 @@ const getGeo = (request: NextRequest) => {
   return request.geo
 }
 
-export default function GET(request: NextRequest) {
+export function GET(request: NextRequest) {
   const target = request.nextUrl.searchParams.get('target') as
     | 'cookies'
     | 'nextURL'
