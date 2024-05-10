@@ -25,19 +25,21 @@ const getIp = (request: NextRequest) => {
  * Functions => [NextRequest]#nextUrl
  *
  *
- * - nextURL 프로퍼티를 지원한다. 이 프로퍼티는 URL 객체를 확장한 것이며, URL정보의 일부를 가진 아래와 같은 프로퍼티가 추가되었다.
+ * 1. request에 전달된 URL은 요청을 보낸 곳의 URL이 아닌 보낸 곳에서 요청을 한 URL이다. 헷갈리지 않도록 하자.
  *
- *   1. basePath : next.config으로 추가한 basePath 접두사의 값을 반환한다. string 타입.
+ * 2. nextURL 프로퍼티를 지원한다. 이 프로퍼티는 URL 객체를 확장한 객체이며, URL정보의 일부를 가진 아래와 같은 프로퍼티가 추가되었다.
  *
- *   ref : https://nextjs.org/docs/app/api-reference/next-config-js/basePath
+ *    1. basePath : next.config으로 추가한 basePath 접두사의 값을 반환한다. string 타입.
  *
- *   2. buildId : next.config으로 추가한 buildId의 값을 반환한다. string | undefined 타입.
+ *    ref : https://nextjs.org/docs/app/api-reference/next-config-js/basePath
  *
- *   ref : https://nextjs.org/docs/app/api-reference/next-config-js/generateBuildId
+ *    2. buildId : next.config으로 추가한 buildId의 값을 반환한다. string | undefined 타입.
  *
- *   3. pathname : URL의 pathname을 반환한다. string 타입.
+ *    ref : https://nextjs.org/docs/app/api-reference/next-config-js/generateBuildId
  *
- *   4. searchParams : URL의 query parameter를 반환한다. get과 같은 메서드를 가진 URLSearchParams object 타입.
+ *    3. pathname : URL의 pathname을 반환한다. string 타입.
+ *
+ *    4. searchParams : URL의 query parameter를 반환한다. get과 같은 메서드를 가진 URLSearchParams object 타입.
  *
  *
  * ref : https://nextjs.org/docs/app/building-your-application/routing/route-handlers#nextUrl
