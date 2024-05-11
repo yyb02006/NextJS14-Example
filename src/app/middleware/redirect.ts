@@ -48,7 +48,7 @@ import { NextResponse } from 'next/server'
  * ref: https://nextjs.org/docs/app/building-your-application/routing/redirecting
  *
  * */
-export function RevertToFrom(requestedUrl: string) {
+export function revertToFrom(requestedUrl: string) {
   const response = NextResponse.redirect('http://localhost:3000')
   response.cookies.set('requested-url', requestedUrl)
   return response
