@@ -49,9 +49,18 @@ import { NextRequest, NextResponse } from 'next/server'
  *
  * */
 export function middleware(request: NextRequest) {
-  const { url } = request
-  console.log(url)
-  // return NextResponse.redirect('http://localhost:3000')
+  const {
+    nextUrl: { searchParams },
+  } = request
+  const target = searchParams.get('target')
+  switch (target) {
+    case 'redirect':
+      return NextResponse.redirect('http://localhost:3000')
+    case 'Authentication':
+      break
+    default:
+      return NextResponse.next()
+  }
 }
 
 export const config = {
