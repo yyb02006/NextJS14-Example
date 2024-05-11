@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { RevertToFrom } from './app/middleware/redirect'
+import { revertToFrom } from './app/middleware/redirect'
+import middlewareCookies from './app/middleware/cookies'
 
 export function middleware(request: NextRequest) {
   const {
@@ -10,18 +11,14 @@ export function middleware(request: NextRequest) {
   const target = searchParams.get('target')
   switch (target) {
     case 'redirect': {
-      const response = RevertToFrom(pathname)
+      const response = revertToFrom(pathname)
       return response
     }
-    case 'Authentication':
-      break
-    case 'response-cookies':
-      console.log('run response-cookies')
-      const response = NextResponse.next()
-      response.cookies.set('response', 'cookies from middleware response')
+    case 'response-cookies': {
+      const response = middlewareCookies()
       return response
+    }
     case 'request-cookies':
-      console.log('run request-cookies')
       request.cookies.set('request', 'cookies from middleware request')
       console.log(request.cookies.getAll())
       return NextResponse.next()
