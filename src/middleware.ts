@@ -49,6 +49,7 @@ import { NextRequest, NextResponse } from 'next/server'
  *
  * */
 export function middleware(request: NextRequest) {
+  console.log('request = ' + request.nextUrl.pathname)
   const {
     nextUrl: { searchParams },
   } = request
@@ -66,7 +67,9 @@ export function middleware(request: NextRequest) {
 export const config = {
   // 미들웨어 matcher가 :path와 같은 dynamic parameter에 대해 제대로 작동하지 않는 버그를 가지고 있음. 실제 :path를 매칭하지 못하고, :path의 부모 경로만 매칭 가능함.
   // 아래 경로의 경우 "/linking-and-navigating/redirecting/use-router" 경로만 매칭
+  // matcher: '/linking-and-navigating/redirecting/use-router/:path',
+  //
   // matcher가 정규식을 지원하니 경로에 정규식 사용 권장
   // https://github.com/vercel/next.js/issues/53840
-  matcher: '/linking-and-navigating/redirecting/use-router/:path',
+  matcher: '/((?!_next/static|_next/image|favicon.ico).*)',
 }
