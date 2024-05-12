@@ -22,6 +22,13 @@ export function middleware(request: NextRequest) {
       request.cookies.set('request', 'cookies from middleware request')
       console.log(request.cookies.getAll())
       return NextResponse.next()
+    case 'headers':
+      const headers = new Headers(request.headers)
+      headers.set('middleware-header', 'hello')
+      const response = NextResponse.next({ request: { headers } })
+      return response
+    case 'cors':
+
     default:
       return NextResponse.next()
   }
