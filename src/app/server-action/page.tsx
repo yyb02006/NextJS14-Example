@@ -21,6 +21,29 @@ const FormInput = ({
   )
 }
 
+interface LateBloomer {
+  petalCount: number
+  bloom: () => void
+  declare: () => void
+}
+
+function createLateBloomer(): LateBloomer {
+  const petalCount = Math.ceil(Math.random() * 12) + 1
+
+  function bloom() {
+    setTimeout(declare, 1000)
+  }
+
+  function declare() {
+    console.log(`I am a beautiful flower with ${petalCount} petals!`)
+  }
+
+  return { petalCount, bloom, declare }
+}
+
+const flower = createLateBloomer()
+flower.bloom()
+
 export default function ServerActionPage() {
   async function createInvoice(formData: FormData) {
     'use server'
@@ -32,6 +55,12 @@ export default function ServerActionPage() {
     }
     console.log(rawFormData)
   }
+  async function updateUser(userId: number, formData: FormData) {
+    'use server'
+    console.log(formData.get('id'))
+    console.log(userId)
+  }
+  const updateUserWithId = updateUser.bind(null, 4)
   const formFieldAttributes: FormType[] = [
     { type: 'text', key: 'id', name: 'id' },
     { type: 'text', key: 'name', name: 'name' },
