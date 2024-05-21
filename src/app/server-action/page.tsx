@@ -60,6 +60,10 @@ export default function ServerActionPage() {
     console.log(formData.get('id'))
     console.log(userId)
   }
+  async function logging() {
+    'use server'
+    console.log('non-form button was clicked')
+  }
   const updateUserWithId = updateUser.bind(null, 4)
   const formFieldAttributes: FormType[] = [
     { type: 'text', key: 'id', name: 'id' },
@@ -68,11 +72,21 @@ export default function ServerActionPage() {
     { type: 'text', key: 'job', name: 'job' },
   ]
   return (
-    <form action={createInvoice}>
-      {formFieldAttributes.map(({ type, key, name }) => {
-        return FormInput({ type, key, name })
-      })}
-      <button type="submit">Submit</button>
-    </form>
+    <>
+      <form action={createInvoice}>
+        {formFieldAttributes.map(({ type, key, name }) => {
+          return FormInput({ type, key, name })
+        })}
+        <button type="submit">Submit</button>
+      </form>
+      <button
+        onClick={async () => {
+          await logging()
+          console.log('server-action with non-form button was succeed')
+        }}
+      >
+        Non-form Button
+      </button>
+    </>
   )
 }
