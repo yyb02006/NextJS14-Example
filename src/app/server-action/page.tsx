@@ -1,3 +1,5 @@
+import { createInvoice, logging, updateUser } from '../actions'
+
 interface FormType {
   type: 'text' | 'number'
   name: string
@@ -45,25 +47,6 @@ const flower = createLateBloomer()
 flower.bloom()
 
 export default function ServerActionPage() {
-  async function createInvoice(formData: FormData) {
-    'use server'
-    const rawFormData = {
-      id: formData.get('id'),
-      name: formData.get('name'),
-      age: formData.get('age'),
-      job: formData.get('job'),
-    }
-    console.log(rawFormData)
-  }
-  async function updateUser(userId: number, formData: FormData) {
-    'use server'
-    console.log(formData.get('id'))
-    console.log(userId)
-  }
-  async function logging() {
-    'use server'
-    console.log('non-form button was clicked')
-  }
   const updateUserWithId = updateUser.bind(null, 4)
   const formFieldAttributes: FormType[] = [
     { type: 'text', key: 'id', name: 'id' },
