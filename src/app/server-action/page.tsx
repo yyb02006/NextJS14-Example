@@ -23,29 +23,6 @@ const FormInput = ({
   )
 }
 
-interface LateBloomer {
-  petalCount: number
-  bloom: () => void
-  declare: () => void
-}
-
-function createLateBloomer(): LateBloomer {
-  const petalCount = Math.ceil(Math.random() * 12) + 1
-
-  function bloom() {
-    setTimeout(declare, 1000)
-  }
-
-  function declare() {
-    console.log(`I am a beautiful flower with ${petalCount} petals!`)
-  }
-
-  return { petalCount, bloom, declare }
-}
-
-const flower = createLateBloomer()
-flower.bloom()
-
 export default function ServerActionPage() {
   const updateUserWithId = updateUser.bind(null, 4)
   const formFieldAttributes: FormType[] = [
