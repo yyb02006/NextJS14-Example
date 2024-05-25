@@ -23,6 +23,20 @@ const FormInput = ({
   )
 }
 
+/**
+ *
+ * Data Fetching => [Server Actions and Mutations]
+ *
+ *
+ * 1. 비동기 함수 내부에서 'use server' 키워드를 사용하면 클라이언트 컴포넌트더라도 서버에서만 코드가 작동하도록 만들 수 있다.
+ *    이를 '서버액션'이라고 한다.
+ *
+ * 2. 보통의 경우 actions 폴더에 서버액션을 따로 모아서 관리하는 방법을 따른다.
+ *
+ *
+ * ref : https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
+ *
+ */
 export default function ServerActionPage() {
   const updateUserWithId = updateUser.bind(null, 4)
   const formFieldAttributes: FormType[] = [
