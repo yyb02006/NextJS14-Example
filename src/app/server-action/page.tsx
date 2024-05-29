@@ -34,7 +34,6 @@ const FormInput = ({
  *
  * 3. 보통의 경우 actions 폴더에 서버액션을 따로 모아서 관리하는 폴더구조를 따른다.
  *
- *
  * 4. 주로 FormData의 action 어트리뷰트에 서버액션을 넣고, 서버액션에서 FormData 파라미터로 전달받은 데이터를 참조해
  *    pending, validation, error handling 등을 처리하는 방식으로 사용한다.
  *
