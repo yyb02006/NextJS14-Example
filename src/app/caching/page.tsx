@@ -1,3 +1,8 @@
+'use client'
+
+import CallRequestMemoizationComponent from '#/components/call-request-memoization'
+import { useEffect, useState } from 'react'
+
 // Request Memoization
 // 인터렉션이나 로딩으로 인해 발생하는 하나의 렌더링 시퀀스 안에서 같은 요청이 반복될 때, 실제로 요청하지 않고 응답을 재활용하는 것을 말한다.
 // 렌더링 중에만 유지되는 캐시이며, 렌더링이 끝난 후에는 당연히 캐시가 무효화된다.
@@ -18,9 +23,30 @@
 // Dynamic Rendering 시에도 요청시점에 전체 페이지를 처음부터 렌더링하는 것이 아니라 Full Route Cache를 이용한다.
 // Revalidating이나 Dynamic Rendering때에 서버에서 fetch가 작동하면 Data Cache도 동시에 사용된다.
 export default function Caching() {
+  const [isCalled, setIsCalled] = useState(false)
+  useEffect(() => {
+    const apiCall = async () => {
+      const respones = await (await fetch('api/caching/request-memoization')).json()
+      console.log('응답 = ', respones)
+    }
+    if (isCalled) {
+      apiCall()
+    }
+  }, [isCalled])
   return (
     <ul>
-      <li>Request Memoization</li>
+      <li
+        onClick={() => {
+          setIsCalled(false)
+        }}
+      >
+        Request Memoization
+        {isCalled
+          ? Array.from({ length: 5 }, (_, index) => {
+              return <CallRequestMemoizationComponent key={5} order={index} />
+            })
+          : null}
+      </li>
       <li>Data Cache</li>
       <li>Router Cache</li>
       <li>Full Route Cache</li>
