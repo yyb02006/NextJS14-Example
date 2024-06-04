@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
     nextUrl: { searchParams, pathname },
     referrer,
   } = request
-  console.log('request = ' + pathname, 'referrer = ' + referrer)
+  // console.log('request = ' + pathname, 'referrer = ' + referrer)
   const target = searchParams.get('target')
   switch (target) {
     case 'redirect': {
@@ -20,7 +20,7 @@ export function middleware(request: NextRequest) {
     }
     case 'request-cookies':
       request.cookies.set('request', 'cookies from middleware request')
-      console.log(request.cookies.getAll())
+      // console.log(request.cookies.getAll())
       return NextResponse.next()
     case 'headers':
       const headers = new Headers(request.headers)
