@@ -1,6 +1,7 @@
 'use client'
 
 import { useOptimistic } from 'react'
+import sendForOptimistic from './fetchFunction'
 
 type Message = {
   message: string
@@ -20,19 +21,19 @@ type Message = {
  * ref : https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations#optimistic-updates
  *
  * */
-export function Thread({ messages }: { messages: Message[] }) {
+function Thread({ messages }: { messages: Message[] }) {
   const [optimisticMessages, addOptimisticMessage] = useOptimistic<Message[], string>(
     messages,
     (state, newMessage) => [...state, { message: newMessage }],
   )
-  const send = async (message: FormDataEntryValue | null) => {
+  /*   const send = async (message: FormDataEntryValue | null) => {
     'use server'
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(message)
       }, 1000)
     })
-  }
+  } */
   return (
     <div>
       {optimisticMessages.map((m, k) => (
@@ -43,7 +44,7 @@ export function Thread({ messages }: { messages: Message[] }) {
           const message = formData.get('message')
           if (typeof message !== 'string') return
           addOptimisticMessage(message)
-          await send(message)
+          await sendForOptimistic(message)
         }}
       >
         <input type="text" name="message" />
@@ -51,4 +52,8 @@ export function Thread({ messages }: { messages: Message[] }) {
       </form>
     </div>
   )
+}
+
+export default function UseOptimistic() {
+  return <Thread messages={[{ message: 'hello' }, { message: 'koniziwa' }]} />
 }
