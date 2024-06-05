@@ -1,3 +1,5 @@
+'use client'
+
 import { createInvoice, logging, updateUser } from '../actions'
 
 interface FormType {
