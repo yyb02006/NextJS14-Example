@@ -1,6 +1,7 @@
 'use client'
 
 import { useFormStatus } from 'react-dom'
+import createInvoice from './fetchFunction'
 
 /**
  *
@@ -27,7 +28,7 @@ import { useFormStatus } from 'react-dom'
  * ref : https://react.dev/reference/react-dom/hooks/useFormStatus
  *
  */
-export function SubmitButton() {
+function SubmitButton() {
   const { pending, action, data, method } = useFormStatus()
   console.log('pending = ', pending)
   console.log('action = ', action)
@@ -48,13 +49,6 @@ export function SubmitButton() {
  *
  */
 export default function UseStatusPage() {
-  async function createInvoice(formData: FormData) {
-    'use server'
-    const rawFormData = {
-      name: formData.get('name'),
-    }
-    console.log(rawFormData)
-  }
   return (
     <form action={createInvoice}>
       <input type="text" name="name" />
