@@ -6,7 +6,7 @@ export default function CallRequestMemoizationComponent({ order }: { order: numb
   useEffect(() => {
     const apiCall = async () => {
       console.log('GET 리퀘스트 컴포넌트 렌더링')
-      const respones = await (await fetch('api/caching/request-memoization')).json()
+      const respones = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
       console.log('응답 = ', respones)
     }
     apiCall()
