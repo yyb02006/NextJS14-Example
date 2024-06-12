@@ -14,6 +14,11 @@ import { ImageDiv } from './ImageDiv'
  *
  * 2. Request Memoization은 Server Side fetch 요청의 GET 메서드에만 적용된다.
  *
+ * 3. 브라우저에서 이루어지는 fetch 요청과 서버 액션은 Request Memoization의 대상이 아니다.
+ *
+ *
+ * + fetch API를 사용할 때 {cache : "no-store"}와 같은 옵션을 사용하면 빌드타임 html이 생성되지 않는다.
+ *
  *
  * ref : https://nextjs.org/docs/app/building-your-application/caching#request-memoization
  *
@@ -28,6 +33,7 @@ export default async function TestReq({ children }: { children: ReactNode }) {
         <ImageDiv url={url} description="Server Layout Fetch Image" />
         {children}
       </div>
+      {/* Client Component */}
       <ClientFetchComponent />
     </section>
   )
