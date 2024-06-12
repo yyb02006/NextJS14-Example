@@ -1,6 +1,6 @@
-import Image from 'next/image'
 import { ReactNode } from 'react'
 import ClientFetchComponent from './ClientCatComponent'
+import { ImageDiv } from './ImageDiv'
 
 /**
  *
@@ -12,7 +12,7 @@ import ClientFetchComponent from './ClientCatComponent'
  *
  *    1-1. 같은 요청의 기준은 "url과 옵션이 동일한 fetch 요청"이다.
  *
- * 2. Request Memoization은 fetch 요청의 GET 메서드에만 적용된다.
+ * 2. Request Memoization은 Server Side fetch 요청의 GET 메서드에만 적용된다.
  *
  *
  * ref : https://nextjs.org/docs/app/building-your-application/caching#request-memoization
@@ -25,12 +25,7 @@ export default async function TestReq({ children }: { children: ReactNode }) {
   return (
     <section className="p-10">
       <div className="flex">
-        <div className="border border-sky-600">
-          <div className="relative h-[225px] w-[400px]">
-            <Image alt="altImg" src={url} layout="fill" objectFit="cover" />
-          </div>
-          <span className="text-rose-400">Layout Fetch Image</span>
-        </div>
+        <ImageDiv url={url} description="Server Layout Fetch Image" />
         {children}
       </div>
       <ClientFetchComponent />

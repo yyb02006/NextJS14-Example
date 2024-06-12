@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import CatImage from './ServerCatComponent'
+import { ImageDiv } from './ImageDiv'
 
 interface DogData {
   id: string
@@ -37,12 +38,7 @@ export default async function ReqMemoPage() {
   console.log('Page call = ', url)
   return (
     <section className="flex">
-      <div className="border border-sky-600">
-        <div className="relative h-[225px] w-[400px]">
-          <Image alt="altImg" src={url} layout="fill" objectFit="cover" />
-        </div>
-        <span className="text-rose-400">Page Fetch Image</span>
-      </div>
+      <ImageDiv url={url} description="Server Page Fetch Image" />
       <CatImage />
     </section>
   )
