@@ -26,7 +26,7 @@ export default function Caching() {
   const [isCalled, setIsCalled] = useState(false)
   useEffect(() => {
     const apiCall = async () => {
-      const respones = await (await fetch('api/caching/request-memoization')).json()
+      const respones = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
       console.log('응답 = ', respones)
     }
     if (isCalled) {
@@ -37,7 +37,7 @@ export default function Caching() {
     <ul>
       <li
         onClick={() => {
-          setIsCalled(false)
+          setIsCalled(true)
         }}
       >
         Request Memoization
