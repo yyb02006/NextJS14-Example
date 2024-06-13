@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ImageDiv } from './ImageDiv'
+import { ImageDiv } from '../ImageDiv'
 
 interface DogData {
   id: string
