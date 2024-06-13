@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import CatImage from './ServerCatComponent'
+import CatImage from './components/ServerCatComponent'
 import { ImageDiv } from './ImageDiv'
 
 interface DogData {

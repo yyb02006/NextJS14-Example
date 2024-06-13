@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import ClientFetchComponent from './ClientCatComponent'
+import ClientFetchComponent from './components/ClientCatComponent'
 import { ImageDiv } from './ImageDiv'
 
 /**
