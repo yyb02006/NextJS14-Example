@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import ClientFetchComponent from './components/ClientCatComponent'
-import { ImageDiv } from './ImageDiv'
+import { ImageDiv } from '../ImageDiv'
 
 /**
  *
