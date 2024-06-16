@@ -21,6 +21,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'cdn2.thedogapi.com' },
     ],
   },
+  logging: { fetches: { fullUrl: true } },
 }
 
 export default nextConfig
