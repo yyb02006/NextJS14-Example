@@ -18,9 +18,9 @@ export default function StreamingCommmonLayout({ children }: { children: ReactNo
   const commonPath = '/caching'
   const navButtons = [
     { label: 'to Request Memoization', path: '/req-memo' },
-    { label: 'to Data Cache', path: '/dashboard' },
-    { label: 'to Router Cache', path: '/linking' },
-    { label: 'to Full Route Cache', path: '/linking' },
+    { label: 'to Data Cache', path: '/data-cache' },
+    { label: 'to Router Cache', path: '/router-cache' },
+    { label: 'to Full Route Cache', path: '/full-route-cache' },
   ]
   return (
     <section>
