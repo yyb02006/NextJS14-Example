@@ -9,10 +9,12 @@ export default async function TestReq({ children }: { children: ReactNode }) {
           <Link href={'/caching/router-cache'}>to Server Side Rendered Page</Link>
         </li>
         <li className="border p-2 hover:bg-red-500">
-          <Link href={'/caching/router-cache/hello'}>to Client Side Rendered Page</Link>
+          <Link href={'/caching/router-cache/client-side-rendered'}>
+            to Client Side Rendered Page
+          </Link>
         </li>
         <li className="border p-2 hover:bg-red-500">
-          <Link href={'/caching/router-cache/world'}>to Dynamic Renderd Page Page</Link>
+          <Link href={'/caching/router-cache/dynamic-rendered'}>to Dynamic Renderd Page Page</Link>
         </li>
       </ul>
       <div>{children}</div>
