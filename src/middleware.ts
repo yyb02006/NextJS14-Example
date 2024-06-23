@@ -4,11 +4,17 @@ import middlewareCookies from './app/middleware/cookies'
 
 export function middleware(request: NextRequest) {
   const {
-    nextUrl: { searchParams, pathname },
+    nextUrl: { searchParams, pathname, origin, basePath },
     referrer,
+    url,
   } = request
   // console.log('request = ' + pathname, 'referrer = ' + referrer)
   const target = searchParams.get('target')
+  const requestHeaders = new Headers(request.headers)
+  requestHeaders.set('x-url', url)
+  requestHeaders.set('x-origin', origin)
+  requestHeaders.set('x-pathname', pathname)
+  requestHeaders.set('x-base-path', basePath)
   switch (target) {
     case 'redirect': {
       const response = revertToFrom(pathname)
@@ -28,9 +34,8 @@ export function middleware(request: NextRequest) {
       const response = NextResponse.next({ request: { headers } })
       return response
     case 'cors':
-
     default:
-      return NextResponse.next()
+      return NextResponse.next({ request: { headers: requestHeaders } })
   }
 }
 
