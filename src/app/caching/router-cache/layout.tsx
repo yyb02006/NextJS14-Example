@@ -14,7 +14,7 @@ export default async function TestReq({ children }: { children: ReactNode }) {
           </Link>
         </li>
         <li className="border p-2 hover:bg-red-500">
-          <Link href={'/caching/router-cache/dynamic-rendered'}>to Dynamic Renderd Page Page</Link>
+          <Link href={'/caching/router-cache/dynamic-rendered'}>to Dynamic Rendered Page</Link>
         </li>
       </ul>
       <div>{children}</div>

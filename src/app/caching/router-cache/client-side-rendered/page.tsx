@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { ImageDiv } from '../../ImageDiv'
 
-export default function RouterCacheHelloPage() {
+export default function NoneCachingPage() {
   const [url, setUrl] = useState('')
   useEffect(() => {
     const getCatImage = async () => {
@@ -15,7 +15,7 @@ export default function RouterCacheHelloPage() {
   }, [])
   return (
     <section>
-      Hello RouterCacheHelloPage!
+      Hello Client-Side-Rendered Page!
       <div className="flex">
         <ImageDiv url={url} description="this page rendered on client side" />
       </div>

@@ -35,7 +35,7 @@ export default async function RouterCache() {
   const url = data[0].url
   return (
     <div>
-      <div>Hello RouterCachePage!</div>
+      <div>Hello Server-Side-Rendered Page!</div>
       <div className="flex">
         <ImageDiv url={url} description="Router Cache Cat Image" />
       </div>
