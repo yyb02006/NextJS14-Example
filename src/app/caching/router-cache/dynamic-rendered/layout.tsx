@@ -1,10 +1,7 @@
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
 export default function DynamicRenderedLayout({ children }: { children: ReactNode }) {
-  const pathname = headers().get('x-url')
-  console.log(pathname)
   return (
     <section>
       <ul className="mb-4 flex gap-4">
