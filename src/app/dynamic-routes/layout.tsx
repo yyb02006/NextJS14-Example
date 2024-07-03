@@ -14,7 +14,7 @@ const NavButton = ({ label, path }: { label: string; path: string }) => {
   )
 }
 
-export default function StreamingCommmonLayout({ children }: { children: ReactNode }) {
+export default function DynamicRoutesLayout({ children }: { children: ReactNode }) {
   const navButtons = [
     { label: 'to [dynamic]', path: '/dynamic-routes/n' },
     { label: 'to [...Catch-all]', path: '/dynamic-routes/catch-all/c/a/t/c/h/a/l/l' },
