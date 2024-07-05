@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import ErrorHandlingLayout from './layout'
 import ErrorHandlingPage from './page'
 import ErrorComponent from './error'
+import userEvent from '@testing-library/user-event'
 
 describe('Layout Component Rendering Test', () => {
   it('올바른 텍스트를 가진 div 요소들이 있어야 한다', () => {
@@ -24,6 +25,7 @@ describe('Page Component Rendering Test', () => {
   })
 })
 
+const user = userEvent.setup()
 describe('Error Component Rendering Test', () => {
   const error = new Error('Test Error')
   const resetMock = jest.fn()
@@ -35,9 +37,15 @@ describe('Error Component Rendering Test', () => {
     expect(consoleInstance).toHaveBeenCalledWith(error)
     consoleInstance.mockRestore()
   })
-  it(`'Try Again' 이라는 텍스트를 가진 button 요소가 있어야 한다`, () => {
+  it(`'Try Again' 이라는 텍스트를 가진 button 요소가 있어야 한다`, async () => {
     render(<ErrorComponent error={error} reset={resetMock} />)
-    const textEl = screen.getByRole('button', { name: 'Try Again' })
-    expect(textEl).toBeInTheDocument()
+    const buttonEl = screen.getByRole('button', { name: 'Try Again' })
+    expect(buttonEl).toBeInTheDocument()
+  })
+  it(`button 요소를 클릭 시 resetMock 함수가 작동해야 한다`, async () => {
+    render(<ErrorComponent error={error} reset={resetMock} />)
+    const buttonEl = screen.getByRole('button', { name: 'Try Again' })
+    await user.click(buttonEl)
+    expect(resetMock).toHaveBeenCalled()
   })
 })
