@@ -18,7 +18,6 @@ describe('Page Component Rendering Test', () => {
     const buttonEl = screen.getByRole('button', { name: 'Click to Real Page' })
     expect(buttonEl).toBeInTheDocument()
   })
-  // 뤼튼 답변 참고해서 history 라이브러리 도입 고려
   it(`button을 클릭했을 때 href가 '/'에서 '/intercepting-routes/photo/140'로 바뀌어야 한다`, async () => {
     render(<InterceptingFeedPage params={{ id: '140' }} />)
     const buttonEl = screen.getByRole('button', { name: 'Click to Real Page' })
