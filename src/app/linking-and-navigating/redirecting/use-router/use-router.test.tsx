@@ -21,7 +21,7 @@ describe('Page Component Rendering Test', () => {
     replace: jest.fn(),
   }
   beforeEach(() => {
-    ;(useRouter as jest.Mock).mockReturnValue(routerMock)
+    ;(useRouter as jest.MockedFunction<typeof useRouter>).mockReturnValue(routerMock)
     render(<UseRouterSuspense />)
   })
   it(`올바른 URL이 표시되어야 한다`, () => {
