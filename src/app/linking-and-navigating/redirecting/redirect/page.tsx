@@ -46,9 +46,8 @@ const timeout = (id: string) =>
  * */
 export default async function ServerRedirecting() {
   const response = await timeout('admin')
-  !response.success ? (
-    redirect('/linking-and-navigating')
-  ) : (
+  response.success || redirect('/linking-and-navigating')
+  return (
     <ul>
       <li>Hello ServerRedirecting Page!</li>
     </ul>
