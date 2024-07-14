@@ -41,16 +41,11 @@ import { redirect } from 'next/navigation'
  * */
 export default async function ServerRedirecting() {
   const response = await timeout({ success: false, resolveProps: { role: 'admin' } })
-  const environment = process.env.NODE_ENV
-  if (environment === 'test') {
-    response.success || mockFunction('/linking-and-navigating')
-  } else {
-    response.success || redirect('/linking-and-navigating')
-  }
+  response.success || redirect('/linking-and-navigating')
   return (
-    <div>
-      <p>Hello ServerRedirecting Page!</p>
+    <section>
+      <h1>Hello ServerRedirecting Page!</h1>
       <div>your role is {response.role}</div>
-    </div>
+    </section>
   )
 }
