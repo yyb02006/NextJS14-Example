@@ -1,11 +1,5 @@
+import { timeout } from '#/utils/timeout'
 import { permanentRedirect } from 'next/navigation'
-
-const timeout = (id: string) =>
-  new Promise<{ success: boolean; role: string }>((resolve) => {
-    setTimeout(() => {
-      resolve({ success: false, role: id })
-    }, 3000)
-  })
 
 /**
  *
@@ -45,10 +39,12 @@ const timeout = (id: string) =>
  *
  * */
 export default async function PermanentRedirect() {
-  const response = await timeout('user')
-  !response.success ? (
-    permanentRedirect('/linking-and-navigating')
-  ) : (
-    <div>Hello PermanentRedirectPage!</div>
+  const response = await timeout({ success: true, resolveProps: { role: 'user' } })
+  response.success || permanentRedirect('/linking-and-navigating')
+  return (
+    <section>
+      <h1>Hello PermanentRedirect Page!</h1>
+      <div>your role is {response.role}</div>
+    </section>
   )
 }
