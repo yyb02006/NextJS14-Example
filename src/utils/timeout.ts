@@ -50,10 +50,11 @@ export const timeout = <T extends ResolveProps>({
   resolveProps,
 }: {
   success: boolean
-  resolveProps: T
-}): Promise<Result & T> =>
-  new Promise<Result & T>((resolve) => {
+  resolveProps?: T
+}): Promise<Result & T> => {
+  return new Promise<Result & T>((resolve) => {
     setTimeout(() => {
-      resolve({ success, ...resolveProps })
+      resolve({ success, ...resolveProps } as Result & T)
     }, 3000)
   })
+}
