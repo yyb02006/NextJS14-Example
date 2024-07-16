@@ -1,8 +1,13 @@
 import Link from 'next/link'
 
-export default function NavButton({ label, path }: { label: string; path: string }) {
+interface NavButtonProps {
+  label: string
+  path: string
+}
+
+const NavButton: React.FC<NavButtonProps> = ({ label, path }) => {
   return (
-    <li className=" h-full w-full border-l">
+    <li className="h-full w-full border-l">
       <Link
         className="flex h-full w-full items-center justify-center hover:bg-amber-500"
         href={path}
@@ -12,3 +17,6 @@ export default function NavButton({ label, path }: { label: string; path: string
     </li>
   )
 }
+
+export default NavButton
+export type { NavButtonProps }
