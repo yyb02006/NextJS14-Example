@@ -9,7 +9,7 @@ function getAllTextContent(element: Element) {
     .join('')
 }
 
-test(`testCases 객체 배열의 정보에 부합하는 list 요소가 있어야 한다`, async () => {
+test(`testCases 객체 배열의 정보에 부합하는 텍스트를 가진 div 요소가 있어야 한다`, async () => {
   // Given
   jest.useFakeTimers()
   const testCases = [
@@ -25,14 +25,17 @@ test(`testCases 객체 배열의 정보에 부합하는 list 요소가 있어야
 
   // Then
   testCases.forEach(({ color, delaySec, expectedClass }) => {
-    const textEl = screen.getByText((_, element) => {
-      if (!element) return false
-      const textContent = getAllTextContent(element)
-      return (
-        textContent ===
-        `${color[0].toUpperCase() + color.slice(1)}Div was fetched successfully. ( delayed ${delaySec}seconds )`
-      )
-    })
+    const textEl = screen.getByText(
+      (_, element) => {
+        if (!element) return false
+        const textContent = getAllTextContent(element)
+        return (
+          textContent ===
+          `${color[0].toUpperCase() + color.slice(1)}Div was fetched successfully. ( delayed ${delaySec}seconds )`
+        )
+      },
+      { selector: 'div' },
+    )
     expect(textEl).toHaveClass(expectedClass)
   })
 })
