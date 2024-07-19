@@ -1,4 +1,5 @@
 import fetchDelayedColor, { FetchDelayedColorReturn } from '#/utils/fetchDelayedColor'
+import React from 'react'
 import DelayedDiv from './DelayedDiv'
 
 export default async function ChildComponent() {
