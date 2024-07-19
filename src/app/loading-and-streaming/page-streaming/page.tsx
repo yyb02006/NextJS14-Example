@@ -1,4 +1,4 @@
-import ChildComponent from './ChildComponent'
+import ChildComponent from './components/ChildComponent'
 
 /**
  *
