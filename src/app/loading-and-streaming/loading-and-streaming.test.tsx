@@ -20,7 +20,7 @@ test(`'Global Nav in Parent Segment Layout'텍스트를 가진 div 요소가 있
   expect(textEl).toBeInTheDocument()
 })
 
-test(`navList 객체 배열의 정보에 부합하는 list 요소가 있어야 한다`, () => {
+test(`navList의 정보에 부합하는 list 요소가 있어야 한다`, () => {
   // Given
   const navList = [
     { label: 'to Home', path: '/' },
