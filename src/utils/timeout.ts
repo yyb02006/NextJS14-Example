@@ -34,12 +34,13 @@ interface Result {
  * @template T - 주어진 프로퍼티의 타입
  * @param {Object} params - 함수의 매개변수를 포함하는 객체
  * @param {boolean} params.success - 결과에 포함될 성공 여부를 나타내는 값
- * @param {T} params.resolveProps - 결과에 포함될 추가 프로퍼티들을 가진 객체
+ * @param {T} [params.resolveProps] - 결과에 포함될 추가 프로퍼티들을 가진 객체
+ * @param {number} [params.delayMs=3000] - 결과를 반환하기 전에 기다릴 시간(밀리초), 기본값은 3000ms
  * @returns {Promise<Result & T>} - 주어진 프로퍼티들과 함께 success: false를 포함하는 객체를 resolve하는 Promise를 반환
  *
  * @example
  *
- * timeout({ success: false, resolveProps: { message: 'Operation completed' } }).then((result) => {
+ * timeout({ success: false, resolveProps: { message: 'Operation completed' }, delayMs: 2000 }).then((result) => {
  *   console.log(result.success) // false
  *   console.log(result.message) // "Operation completed"
  * })
@@ -48,13 +49,15 @@ interface Result {
 export const timeout = <T extends ResolveProps>({
   success,
   resolveProps,
+  delayMs = 3000,
 }: {
   success: boolean
   resolveProps?: T
+  delayMs?: number
 }): Promise<Result & T> => {
   return new Promise<Result & T>((resolve) => {
     setTimeout(() => {
       resolve({ success, ...resolveProps } as Result & T)
-    }, 3000)
+    }, delayMs)
   })
 }
