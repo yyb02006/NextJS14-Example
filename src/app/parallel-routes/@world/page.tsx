@@ -1,23 +1,17 @@
 'use client'
 
+import { timeout } from '#/utils/timeout'
 import { useEffect, useState } from 'react'
 
-const fetchComment = () => {
-  return new Promise<{ success: boolean; comment: string }>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        success: true,
-        comment: 'Worlds were fetched successfully. ( delayed 5 seconds )',
-      })
-    }, 5000)
-  })
-}
-
-export default function ParallelWorldPage() {
+export default function WorldSlotPage() {
   const [data, setData] = useState<string>('')
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchComment()
+      const response = await timeout({
+        success: true,
+        delayMs: 5000,
+        resolveProps: { comment: 'Worlds were fetched successfully. ( delayed 5 seconds )' },
+      })
       console.log(response.comment)
       setData(response.comment)
     }
