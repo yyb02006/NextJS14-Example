@@ -14,7 +14,7 @@ const NavButton = ({ label, path }: { label: string; path: string }) => {
   )
 }
 
-export default function StreamingCommmonLayout({ children }: { children: ReactNode }) {
+export default function RouteGroupsLayout({ children }: { children: ReactNode }) {
   const navButtons = [
     { label: 'to Hello', path: '/route-groups/hello' },
     { label: 'to World', path: '/route-groups/world' },
