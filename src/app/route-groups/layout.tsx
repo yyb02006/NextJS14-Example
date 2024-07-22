@@ -1,18 +1,5 @@
-import Link from 'next/link'
+import NavButton from '#/components/NavButton'
 import { ReactNode } from 'react'
-
-const NavButton = ({ label, path }: { label: string; path: string }) => {
-  return (
-    <li className=" h-full w-full border-l">
-      <Link
-        className="flex h-full w-full items-center justify-center hover:bg-amber-500"
-        href={path}
-      >
-        {label}
-      </Link>
-    </li>
-  )
-}
 
 export default function RouteGroupsLayout({ children }: { children: ReactNode }) {
   const navButtons = [
