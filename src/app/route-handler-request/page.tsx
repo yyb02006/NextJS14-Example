@@ -4,7 +4,7 @@ import ServerComponentFetch from './FetchingFromServer'
 export default async function RouteHandlerRequestPage() {
   return (
     <section>
-      Hello RouteHandlerRequestPage!
+      <h1>Hello RouteHandlerRequestPage!</h1>
       <div>
         Client = <ClientComponentFetch />
       </div>
