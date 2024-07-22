@@ -10,4 +10,9 @@ export const handlers = [
       title: 'Maverick',
     })
   }),
+  http.get('http://localhost:3000/api/caching/optout', () => {
+    return HttpResponse.json({
+      time: 20201125,
+    })
+  }),
 ]
