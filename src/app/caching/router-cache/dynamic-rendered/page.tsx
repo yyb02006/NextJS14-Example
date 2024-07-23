@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
  * 이 페이지는 링크버튼이 있었던 상위레이아웃 파일에서의 prefetch방식이 true이므로 5분.
  *
  * */
-export default async function PreFetchingPage() {
+export default async function DynamicRenderedPage() {
   const data = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
   const url = data[0].url
   console.log('this image was fetched on server')
