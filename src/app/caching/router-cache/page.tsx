@@ -1,4 +1,4 @@
-import { ImageDiv } from '../ImageDiv'
+import ImageDiv from '../ImageDiv'
 
 /**
  *
@@ -30,15 +30,17 @@ import { ImageDiv } from '../ImageDiv'
  * ref : https://nextjs.org/docs/app/building-your-application/caching#router-cache
  *
  * */
-export default async function RouterCache() {
+export default async function RouterCachePage() {
   const data = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
+  console.log(data)
+
   const url = data[0].url
   return (
-    <div>
-      <div>Hello Server-Side-Rendered Page!</div>
+    <section>
+      <h1>Hello Server-Side-Rendered Page!</h1>
       <div className="flex">
         <ImageDiv url={url} description="Router Cache Cat Image" />
       </div>
-    </div>
+    </section>
   )
 }
