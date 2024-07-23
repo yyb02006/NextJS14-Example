@@ -15,7 +15,7 @@ export default async function NonePreFetchingPage() {
   console.log('this image was fetched on server')
   return (
     <section>
-      Hello Dynamic-Rendered Page!
+      <h1>Hello None-Prefetching Page!</h1>
       <div className="flex">
         <ImageDiv url={url} description="this page invalidating 30 seconds later" />
       </div>
