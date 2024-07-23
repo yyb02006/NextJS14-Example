@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ImageDiv } from '../../ImageDiv'
+import ImageDiv from '../../ImageDiv'
 
 export default function NoneCachingPage() {
   const [url, setUrl] = useState('')

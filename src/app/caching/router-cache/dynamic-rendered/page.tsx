@@ -1,4 +1,4 @@
-import { ImageDiv } from '../../ImageDiv'
+import ImageDiv from '../../ImageDiv'
 
 export const dynamic = 'force-dynamic'
 

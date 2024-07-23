@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { callFetch } from '../actions'
-import { ImageDiv } from '../../ImageDiv'
+import ImageDiv from '../../ImageDiv'
 
 const ClientCatImage = () => {
   const [url, setUrl] = useState('')

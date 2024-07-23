@@ -1,4 +1,4 @@
-import { ImageDiv } from '#/app/caching/ImageDiv'
+import ImageDiv from '#/app/caching/ImageDiv'
 
 export const dynamic = 'force-dynamic'
 
