@@ -16,8 +16,6 @@ export const handlers = [
     })
   }),
   http.get('https://api.thecatapi.com/v1/images/search', () => {
-    return HttpResponse.json({
-      data: 'Image Fetched',
-    })
+    return HttpResponse.json([{ url: 'mocked url' }])
   }),
 ]
