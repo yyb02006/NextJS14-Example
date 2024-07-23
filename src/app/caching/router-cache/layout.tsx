@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-export default async function RouterCacheLayout({ children }: { children: ReactNode }) {
+export default function RouterCacheLayout({ children }: { children: ReactNode }) {
   return (
     <section className="p-10">
       <ul className="mb-4 flex gap-4">
