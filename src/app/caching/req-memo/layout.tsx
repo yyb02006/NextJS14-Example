@@ -23,7 +23,7 @@ import ImageDiv from '../ImageDiv'
  * ref : https://nextjs.org/docs/app/building-your-application/caching#request-memoization
  *
  * */
-export default async function TestReq({ children }: { children: ReactNode }) {
+export default async function ReqMemoLayout({ children }: { children: ReactNode }) {
   const data = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
   const url = data[0].url
   console.log('Layout call = ', url)
