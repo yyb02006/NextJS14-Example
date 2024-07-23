@@ -15,4 +15,9 @@ export const handlers = [
       time: 20201125,
     })
   }),
+  http.get('https://api.thecatapi.com/v1/images/search', () => {
+    return HttpResponse.json({
+      data: 'Image Fetched',
+    })
+  }),
 ]
