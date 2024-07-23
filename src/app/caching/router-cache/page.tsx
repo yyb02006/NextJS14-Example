@@ -32,8 +32,6 @@ import ImageDiv from '../ImageDiv'
  * */
 export default async function RouterCachePage() {
   const data = await (await fetch('https://api.thecatapi.com/v1/images/search')).json()
-  console.log(data)
-
   const url = data[0].url
   return (
     <section>
