@@ -1,6 +1,6 @@
 'use client'
 
-import { useFormStatus } from 'react-dom'
+import SubmitButton from './SubmitButton'
 import createInvoice from './fetchFunction'
 
 /**
@@ -23,19 +23,16 @@ import createInvoice from './fetchFunction'
  *
  *    - action(function) : form Element의 action 프로퍼티에 전달된 함수의 참조. 부모 form Element가 없거나, 액션 프로퍼티가 function이 아닐 경우 null을 반환한다.
  *
+ * 4. 테스팅시에 테스팅 프레임워크와 next 사이의 react 버전 불일치 문제로 useFormStatus를 테스팅하지 못하는 이슈가 있다.
+ *
+ *    ref : https://github.com/vercel/next.js/issues/54757#issuecomment-2015168447
+ *    ref : https://stackoverflow.com/questions/78136654/testing-a-next-js-component-with-useformstate-from-react-dom-or-alternatives
+ *
  *
  * ref(FormData) : https://developer.mozilla.org/en-US/docs/Web/API/FormData
  * ref : https://react.dev/reference/react-dom/hooks/useFormStatus
  *
  */
-function SubmitButton() {
-  const { pending, action, data, method } = useFormStatus()
-  console.log('pending = ', pending)
-  console.log('action = ', action)
-  console.log('data = ', data)
-  console.log('method = ', method)
-  return <button disabled={pending}>Submit</button>
-}
 
 /**
  *
