@@ -15,7 +15,7 @@ export default function NoneCachingPage() {
   }, [])
   return (
     <section>
-      Hello Client-Side-Rendered Page!
+      <h1>Hello None-Caching Page!</h1>
       <div className="flex">
         <ImageDiv url={url} description="this page rendered on client side" />
       </div>
