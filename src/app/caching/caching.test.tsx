@@ -1,4 +1,4 @@
-import { getByText, render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import CachingLayout from './layout'
 import CachingPage from './page'
 import userEvent from '@testing-library/user-event'
