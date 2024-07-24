@@ -12,7 +12,7 @@
 const { TextDecoder, TextEncoder } = require('node:util')
 const { ReadableStream, TransformStream } = require('node:stream/web')
 const { clearImmediate } = require('node:timers')
-const { performance } = require('node:perf_hooks')
+// const { performance } = require('node:perf_hooks')
 
 Object.defineProperties(globalThis, {
   TextDecoder: { value: TextDecoder },
@@ -20,7 +20,7 @@ Object.defineProperties(globalThis, {
   ReadableStream: { value: ReadableStream },
   TransformStream: { value: TransformStream },
   clearImmediate: { value: clearImmediate },
-  performance: { value: performance },
+  // performance: { value: performance },
 })
 
 const { Blob, File } = require('node:buffer')
