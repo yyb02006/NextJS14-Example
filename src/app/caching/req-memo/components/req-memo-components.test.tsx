@@ -1,11 +1,22 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import CatImage from './ServerCatComponent'
 import ClientFetchComponent from './ClientCatComponent'
+import { server } from '#/mocks/node'
 
 jest.mock('#/app/caching/ImageDiv', () => {
   return ({ url, description }: { url: string; description: string }) => {
-    return <div data-testid={url}>{description}</div>
+    return <div data-testid={url + description}>{description}</div>
   }
+})
+
+beforeAll(() => {
+  server.listen()
+})
+afterEach(() => {
+  server.resetHandlers()
+})
+afterAll(() => {
+  server.close()
 })
 
 describe(`CatImage 테스트`, () => {
@@ -21,7 +32,9 @@ describe(`CatImage 테스트`, () => {
     // When
 
     // Then
-    expect(screen.getByTestId(testCase.testId)).toHaveTextContent(testCase.description)
+    expect(screen.getByTestId(testCase.testId + testCase.description)).toHaveTextContent(
+      testCase.description,
+    )
   })
 })
 
@@ -49,7 +62,7 @@ describe(`ClientFetchComponent 테스트`, () => {
     // Then
     await waitFor(() => {
       testCases.forEach(({ description, testId }) => {
-        expect(screen.getByTestId(testId)).toHaveTextContent(description)
+        expect(screen.getByTestId(testId + description)).toHaveTextContent(description)
       })
     })
   })
