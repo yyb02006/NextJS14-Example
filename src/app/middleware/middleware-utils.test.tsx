@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { revertToFrom } from './redirect'
 import cookies from './cookies'
+import middlewareCors from './cors'
 
 const mockedUrl = 'http://localhost:3000'
 
@@ -29,6 +30,10 @@ jest.mock('next/server', () => ({
     })),
   },
 }))
+
+// request 객체 모킹 아래 방법이 될까?
+const nextRequest = jest.fn(() => ({ headers: { get: jest.fn() }, method: 'GET' }))
+const mockedRequest = jest.fn(() => new NextRequest('mockedUrl', { method: 'GET' }))
 
 describe('revertToFrom 테스트', () => {
   it(`redirect 메서드가 ${mockedUrl}을 전달받아야 한다`, () => {
@@ -135,5 +140,33 @@ describe('cookies 테스트', () => {
 
     // Then
     expect(nextCookiesHas).toHaveBeenCalledWith('middleware-dessert')
+  })
+})
+
+describe('middlewareCors 테스트', () => {
+  const allowedOrigins = ['https://domain1.com', 'https://domain2.org']
+  const corsOptions = {
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  }
+
+  it('preflight 요청의 응답이 allowedOrigins를 포함해야한다', () => {
+    const request = new NextRequest('https://example.com/api/test', {
+      method: 'OPTIONS',
+      headers: {
+        origin: 'https://domain1.com',
+      },
+    })
+
+    const response = middlewareCors(request)
+
+    expect(response).toBeInstanceOf(NextResponse)
+    expect(response.headers.get('Access-Control-Allow-Origin')).toBe('https://domain1.com')
+    expect(response.headers.get('Access-Control-Allow-Methods')).toBe(
+      corsOptions['Access-Control-Allow-Methods'],
+    )
+    expect(response.headers.get('Access-Control-Allow-Headers')).toBe(
+      corsOptions['Access-Control-Allow-Headers'],
+    )
   })
 })
