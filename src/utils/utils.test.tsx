@@ -1,3 +1,4 @@
+import { mockFunction } from './mockFunction'
 import { timeout } from './timeout'
 
 describe('timeout 테스트', () => {
@@ -35,5 +36,21 @@ describe('timeout 테스트', () => {
     testCases.forEach((testCase, idx) => {
       expect(testCase).toEqual(data[idx].animal)
     })
+  })
+})
+
+describe('mockFunction 테스트', () => {
+  const param = 'mockedArgument'
+
+  it(`'call with'와 '${param}'을 인수로 받는 로그가 호출되어야 한다`, async () => {
+    // Given
+    const consoleInstance = jest.spyOn(console, 'log')
+    mockFunction(param)
+
+    // When
+
+    // Then
+    expect(consoleInstance).toHaveBeenCalledWith('call with ', param)
+    consoleInstance.mockRestore()
   })
 })
