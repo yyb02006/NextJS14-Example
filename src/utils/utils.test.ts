@@ -1,3 +1,4 @@
+import fetchDelayedColor, { DelayedDivBgColors } from './fetchDelayedColor'
 import { mockFunction } from './mockFunction'
 import { timeout } from './timeout'
 
@@ -9,7 +10,7 @@ describe('timeout 테스트', () => {
     jest.useRealTimers()
   })
 
-  it('프로미스가 완료된 후 응답객체의 success 프로퍼티가 true여야 한다 ', async () => {
+  it('프로미스가 완료된 후 응답객체의 success 프로퍼티가 true여야 한다', async () => {
     // Given
     const response = timeout({ success: true, resolveProps: {} })
 
@@ -52,5 +53,37 @@ describe('mockFunction 테스트', () => {
     // Then
     expect(consoleInstance).toHaveBeenCalledWith('call with ', param)
     consoleInstance.mockRestore()
+  })
+})
+
+describe('fetchDelayedColor 테스트', () => {
+  beforeAll(() => {
+    jest.useFakeTimers()
+  })
+
+  afterAll(() => {
+    jest.useRealTimers()
+  })
+
+  const testCases: Array<{ color: DelayedDivBgColors; delaySec: number }> = [
+    { color: 'rose', delaySec: 3 },
+    { color: 'amber', delaySec: 3 },
+    { color: 'fuchsia', delaySec: 3 },
+  ]
+
+  it('주어진 색상과 지연 시간에 대해 올바른 결과를 반환해야 한다.', async () => {
+    // Given
+    const response = testCases.map(({ delaySec, color }) => fetchDelayedColor(delaySec, color))
+
+    // When
+    jest.runAllTimers()
+    const result = await Promise.all(response)
+
+    // Then
+    result.forEach(({ color, delaySec }, idx) => {
+      const { color: testColor, delaySec: testDelaySec } = testCases[idx]
+      expect(color).toEqual(testColor)
+      expect(delaySec).toEqual(testDelaySec)
+    })
   })
 })
