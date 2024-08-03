@@ -50,7 +50,7 @@ export default function Error({
     <div>
       Something Went Wrong!
       <button type="button" onClick={() => reset()} className="bg-amber-600 px-2">
-        Try agin
+        Try Again
       </button>
     </div>
   )

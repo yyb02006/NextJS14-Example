@@ -9,7 +9,7 @@ export default function TimerButton() {
   const [label, setLabel] = useState<'Refresh' | null>(null)
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null)
   const onButtonClick = () => {
-    if (count === 10) {
+    if (count === 10 && label) {
       router.refresh()
       setLabel(null)
       const interval = setInterval(() => {

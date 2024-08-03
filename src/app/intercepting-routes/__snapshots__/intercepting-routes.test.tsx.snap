@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Component Rendering Test 전체 레이아웃이 예상대로 렌더링 되어야 한다 1`] = `
+<div>
+  <section>
+    <nav
+      class="border-b px-10"
+    >
+      <article
+        class="flex h-16 items-center justify-around border-x"
+      >
+        <div
+          class="flex h-full w-full flex-shrink-[2] items-center justify-center hover:bg-sky-600"
+        >
+          Global Nav in intercepting-routes Layout
+        </div>
+        <ul
+          class="flex h-full w-full max-w-[70%] items-center justify-between"
+        >
+          <li
+            class=" h-full w-full border-l"
+          >
+            <a
+              class="flex h-full w-full items-center justify-center hover:bg-amber-500"
+              href="/intercepting-routes/feed"
+            >
+              to Feed
+            </a>
+          </li>
+          <li
+            class=" h-full w-full border-l"
+          >
+            <a
+              class="flex h-full w-full items-center justify-center hover:bg-amber-500"
+              href="/intercepting-routes/photo"
+            >
+              to Photo
+            </a>
+          </li>
+        </ul>
+      </article>
+    </nav>
+    children
+  </section>
+</div>
+`;

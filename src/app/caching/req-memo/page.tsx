@@ -1,5 +1,5 @@
 import CatImage from './components/ServerCatComponent'
-import { ImageDiv } from '../ImageDiv'
+import ImageDiv from '../ImageDiv'
 
 interface DogData {
   id: string

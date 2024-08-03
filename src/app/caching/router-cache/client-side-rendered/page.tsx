@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ImageDiv } from '../../ImageDiv'
+import ImageDiv from '../../ImageDiv'
 
 export default function NoneCachingPage() {
   const [url, setUrl] = useState('')
@@ -15,7 +15,7 @@ export default function NoneCachingPage() {
   }, [])
   return (
     <section>
-      Hello Client-Side-Rendered Page!
+      <h1>Hello None-Caching Page!</h1>
       <div className="flex">
         <ImageDiv url={url} description="this page rendered on client side" />
       </div>

@@ -33,7 +33,7 @@ import { useEffect, useState } from 'react'
  * ref : https://nextjs.org/docs/app/building-your-application/caching
  *
  * */
-export default function Caching() {
+export default function CachingPage() {
   const [isCalled, setIsCalled] = useState(false)
   useEffect(() => {
     const apiCall = async () => {
@@ -54,7 +54,7 @@ export default function Caching() {
         Request Memoization
         {isCalled
           ? Array.from({ length: 5 }, (_, index) => {
-              return <CallRequestMemoizationComponent key={5} order={index} />
+              return <CallRequestMemoizationComponent key={index} order={index} />
             })
           : null}
       </li>

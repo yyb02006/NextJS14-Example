@@ -1,20 +1,7 @@
-import Link from 'next/link'
+import NavButton from '#/components/NavButton'
 import { ReactNode } from 'react'
 
-const NavButton = ({ label, path }: { label: string; path: string }) => {
-  return (
-    <li className=" h-full w-full border-l">
-      <Link
-        className="flex h-full w-full items-center justify-center hover:bg-amber-500"
-        href={path}
-      >
-        {label}
-      </Link>
-    </li>
-  )
-}
-
-export default function StreamingCommmonLayout({ children }: { children: ReactNode }) {
+export default function CachingLayout({ children }: { children: ReactNode }) {
   const commonPath = '/caching'
   const navButtons = [
     { label: 'to Request Memoization', path: '/req-memo' },
@@ -25,7 +12,7 @@ export default function StreamingCommmonLayout({ children }: { children: ReactNo
   return (
     <section>
       <nav className="border-b px-10">
-        <article className="flex h-16 items-center justify-around border-x">
+        <div className="flex h-16 items-center justify-around border-x">
           <div className="flex h-full w-full flex-shrink-[2] items-center justify-center hover:bg-sky-600">
             Global Nav in Parent Segment Layout
           </div>
@@ -35,7 +22,7 @@ export default function StreamingCommmonLayout({ children }: { children: ReactNo
               return <NavButton label={label} path={commonPath + path} key={path}></NavButton>
             })}
           </ul>
-        </article>
+        </div>
       </nav>
       {children}
     </section>

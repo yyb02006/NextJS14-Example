@@ -54,7 +54,7 @@ const NavButton = ({ label, path }: { label: string; path: string }) => {
  * ref : https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes
  *
  * */
-export default function StreamingCommmonLayout({ children }: { children: ReactNode }) {
+export default function InterceptingRoutesLayout({ children }: { children: ReactNode }) {
   const navButtons = [
     { label: 'to Feed', path: '/intercepting-routes/feed' },
     { label: 'to Photo', path: '/intercepting-routes/photo' },

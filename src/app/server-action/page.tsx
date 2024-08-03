@@ -2,7 +2,7 @@
 
 import { createInvoice, logging, updateUser } from '../actions'
 
-interface FormType {
+export interface FormType {
   type: 'text' | 'number'
   name: string
   key: string
@@ -20,7 +20,7 @@ const FormInput = ({
   return (
     <div key={key}>
       <label htmlFor={key}>{name}</label>
-      <input type={type} key={key} name={name} className="text-slate-900" />
+      <input type={type} id={key} name={name} className="text-slate-900" />
     </div>
   )
 }

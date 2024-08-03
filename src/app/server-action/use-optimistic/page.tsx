@@ -54,6 +54,6 @@ function Thread({ messages }: { messages: Message[] }) {
   )
 }
 
-export default function UseOptimistic() {
+export default function UseOptimisticPage() {
   return <Thread messages={[{ message: 'hello' }, { message: 'koniziwa' }]} />
 }

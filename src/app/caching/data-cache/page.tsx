@@ -1,16 +1,9 @@
-import { RequestInit } from 'next/dist/server/web/spec-extension/request'
-import { ImageDiv } from '../ImageDiv'
-import TimerButton from './TimerButton'
-
-const fetchImage = async ({
-  requestInit = undefined,
-  kind,
-}: {
-  requestInit?: RequestInit | undefined
-  kind: 'cat' | 'dog'
-}) => {
-  return await (await fetch(`https://api.the${kind}api.com/v1/images/search`, requestInit)).json()
-}
+import ImageDiv from '../ImageDiv'
+import TimerButton from './_components/TimerButton'
+import NoStoreCatImage from './_components/NoStoreCatImage'
+import ForceCacheCatImage from './_components/ForceCacheCatImage'
+import OnDemandRevalidateCatImage from './_components/OnDemandRevalidateCatImage'
+import fetchImage from './fetchImage'
 
 /**
  *
@@ -37,53 +30,6 @@ const fetchImage = async ({
  * ref : https://nextjs.org/docs/app/building-your-application/caching#data-cache
  *
  * */
-
-/**
- *
- * Data Cache와 no-store 옵션
- *
- * no-store이므로 Data Cache는 매번 SKIP이며 매 요청을 새롭게 보낸다. 새로고침 시 계속 다른 고양이 사진이 출력됨을 알 수 있다.
- * 다만 여기서 no-store옵션을 주게 되면 이후 실행되는 fetch요청 또한 no-store 옵션을 기본값으로 가지게 되는 소위 말해 '전파 현상'이 발생한다.
- * 이것이 원래의 동작인지, 뭔가 이상이 있는 것인지는 현재로서는 불명.
- *
- */
-const NoStoreCatImage = async () => {
-  const data = await fetchImage({ kind: 'cat', requestInit: { cache: 'no-store' } })
-  const url = data[0].url
-  console.log('NoStore Fetch')
-  return <ImageDiv url={url} description="No-Store Fetch" />
-}
-
-/**
- *
- * Data Cache와 force-cache 옵션
- *
- * force-cache이므로 첫 번째 요청이 SET시킨 데이터를 반영구적으로 캐시하고, 새로고침 시 계속 같은 강아지 사진이 출력됨을 알 수 있다.
- *
- */
-const ForceCacheCatImage = async () => {
-  const data = await fetchImage({ kind: 'dog', requestInit: { cache: 'force-cache' } })
-  const url = data[0].url
-  console.log('ForceCache Fetch')
-  return <ImageDiv url={url} description="Force-Cached Fetch" />
-}
-
-/**
- *
- * Data Cache와 On-demand revalidation 옵션
- *
- * on-demand이기 때문에 아래의 캐시를 재검증하기 위해서는 <라우트 핸들러>나 <서버액션>에서 revalidateTag 함수나 revalidatePath 함수를 호출해야 한다.
- *
- */
-const OnDemandRevalidateCatImage = async () => {
-  const data = await fetchImage({
-    kind: 'dog',
-    requestInit: { next: { tags: ['dog'] }, cache: 'force-cache' },
-  })
-  const url = data[0].url
-  console.log('OnDemandRevalidate Fetch')
-  return <ImageDiv url={url} description="On-Demand Revalidate Fetch" />
-}
 
 /**
  *

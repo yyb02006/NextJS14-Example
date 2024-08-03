@@ -44,7 +44,7 @@ import { Suspense } from 'react'
 export default function StreamingComponentsPage() {
   return (
     <section>
-      Hello StreamingComponentsPage!
+      <h1>Hello StreamingComponentsPage!</h1>
       <Suspense fallback={<p>loading post...</p>}>
         <FetchPost />
       </Suspense>

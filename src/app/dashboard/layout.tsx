@@ -22,5 +22,10 @@
  *
  * */
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return <section>{children}</section>
+  return (
+    <section>
+      <h1>Hello DashBoardLayout</h1>
+      {children}
+    </section>
+  )
 }

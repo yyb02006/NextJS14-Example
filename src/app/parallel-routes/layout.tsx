@@ -1,21 +1,8 @@
 'use client'
 
-import Link from 'next/link'
+import NavButton from '#/components/NavButton'
 import { useSelectedLayoutSegment, useSelectedLayoutSegments } from 'next/navigation'
 import { ReactNode } from 'react'
-
-const NavButton = ({ label, path }: { label: string; path: string }) => {
-  return (
-    <li className=" h-full w-full border-l">
-      <Link
-        className="flex h-full w-full items-center justify-center hover:bg-amber-500"
-        href={path}
-      >
-        {label}
-      </Link>
-    </li>
-  )
-}
 
 /**
  *
@@ -62,7 +49,7 @@ const NavButton = ({ label, path }: { label: string; path: string }) => {
  * ref : https://nextjs.org/docs/app/building-your-application/routing/parallel-routes
  *
  * */
-export default function StreamingCommmonLayout({
+export default function ParallelRoutesLayout({
   children,
   hello,
   world,
@@ -116,7 +103,7 @@ export default function StreamingCommmonLayout({
   return (
     <section className="h-screen">
       <nav className="fixed w-full border-b bg-black px-10">
-        <article className="flex h-16 items-center justify-around border-x">
+        <div className="flex h-16 items-center justify-around border-x">
           <div className="flex h-full w-full flex-shrink-[2] items-center justify-center hover:bg-sky-600">
             Global Nav in Parallel Routes Layout
           </div>
@@ -126,7 +113,7 @@ export default function StreamingCommmonLayout({
               return <NavButton label={label} path={path} key={path}></NavButton>
             })}
           </ul>
-        </article>
+        </div>
       </nav>
       <section className="flex h-full w-full items-center justify-center pt-16">
         <div className="gire grid h-[600px] w-[1200px] grid-cols-2 gap-4 text-2xl font-bold ">

@@ -1,11 +1,6 @@
+import { mockFunction } from '#/utils/mockFunction'
+import { timeout } from '#/utils/timeout'
 import { redirect } from 'next/navigation'
-
-const timeout = (id: string) =>
-  new Promise<{ success: boolean; role: string }>((resolve) => {
-    setTimeout(() => {
-      resolve({ success: false, role: id })
-    }, 3000)
-  })
 
 /**
  *
@@ -45,12 +40,12 @@ const timeout = (id: string) =>
  *
  * */
 export default async function ServerRedirecting() {
-  const response = await timeout('admin')
-  !response.success ? (
-    redirect('/linking-and-navigating')
-  ) : (
-    <ul>
-      <li>Hello ServerRedirecting Page!</li>
-    </ul>
+  const response = await timeout({ success: false, resolveProps: { role: 'admin' } })
+  response.success || redirect('/linking-and-navigating')
+  return (
+    <section>
+      <h1>Hello ServerRedirecting Page!</h1>
+      <div>your role is {response.role}</div>
+    </section>
   )
 }
